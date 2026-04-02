@@ -66,6 +66,11 @@ dependencies {
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.google.zxing:core:3.5.3'
 
+    // Аннотации (нужны для компиляции TalkBack utils)
+    implementation 'com.google.errorprone:error_prone_annotations:2.26.1'
+    implementation 'org.checkerframework:checker-qual:3.42.0'
+    implementation 'com.google.guava:guava:33.1.0-android'
+
     // Coroutines (для Anthropic API)
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
