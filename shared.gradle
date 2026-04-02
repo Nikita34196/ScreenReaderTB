@@ -30,8 +30,11 @@ android {
         wear  { dimension "target" }
     }
     buildFeatures {
-        compose = false  // отключаем Compose - не нужен, упрощает сборку
+        compose = true
         buildConfig = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
 }
 
@@ -66,7 +69,13 @@ dependencies {
     // Coroutines (для Anthropic API)
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
 
-    // Wear (делаем необязательным)
+    // Compose (нужен для materialpreferencecompose)
+    implementation "androidx.activity:activity-compose:1.8.2"
+    implementation "androidx.compose.runtime:runtime:1.6.0"
+    implementation "androidx.compose.ui:ui:1.6.0"
+    implementation "androidx.compose.material:material:1.6.0"
+
+    // Wear (необязательный)
     compileOnly 'androidx.wear:wear:1.3.0'
     compileOnly 'com.google.android.support:wearable:2.9.0'
 }
