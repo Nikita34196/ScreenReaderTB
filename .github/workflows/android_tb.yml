@@ -22,16 +22,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle 8.4
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: '8.4'
-
       - name: Write local.properties
         run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
 
       - name: Generate Gradle Wrapper
-        run: gradle wrapper --gradle-version 8.4
+        run: |
+          # AGP 8.11.1 требует Gradle 8.11.1+
+          wget -q https://services.gradle.org/distributions/gradle-8.11.1-bin.zip -P /tmp/
+          unzip -q /tmp/gradle-8.11.1-bin.zip -d /opt/gradle
+          /opt/gradle/gradle-8.11.1/bin/gradle wrapper --gradle-version 8.11.1
 
       - name: Build Debug APK
         run: ./gradlew assemblePhoneDebug --no-daemon --stacktrace
@@ -53,10 +52,7 @@ jobs:
           name: ScreenReader TB ${{ github.ref_name }}
           body: |
             ## ScreenReader TB ${{ github.ref_name }}
-            TalkBack с улучшениями:
-            - VoiceOver-стиль ротор
-            - AI распознавание иконок (Anthropic)
-            - Поддержка MAX мессенджера
+            TalkBack с улучшениями: VoiceOver ротор, AI иконки, MAX мессенджер.
           files: "**/*.apk"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

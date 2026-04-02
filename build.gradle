@@ -12,7 +12,7 @@ dependencies {
 }
 
 buildscript {
-    ext.gradle_plugin_version = "8.4.0"
+    ext.gradle_plugin_version = "8.7.0"
     ext.kotlin_version = "1.9.23"
     repositories {
         mavenCentral()
