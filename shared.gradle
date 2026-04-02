@@ -66,6 +66,15 @@ dependencies {
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.google.zxing:core:3.5.3'
 
+    // GMS (Google Play Services)
+    implementation 'com.google.android.gms:play-services-base:18.4.0'
+
+    // ML Kit OCR
+    implementation 'com.google.mlkit:text-recognition:16.0.0'
+
+    // AndroidX i18n
+    implementation 'androidx.core:core-i18n:1.0.0-alpha01'
+
     // Аннотации (нужны для компиляции TalkBack utils)
     implementation 'com.google.errorprone:error_prone_annotations:2.26.1'
     implementation 'org.checkerframework:checker-qual:3.42.0'
