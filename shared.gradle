@@ -8,7 +8,7 @@ ext {
 }
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 36
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
@@ -46,7 +46,7 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.collection:collection:1.4.0'
-    implementation 'androidx.core:core:1.12.0'
+    implementation 'androidx.core:core:1.13.1'
     implementation 'androidx.fragment:fragment:1.6.2'
     implementation 'androidx.lifecycle:lifecycle-service:2.7.0'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
@@ -73,7 +73,7 @@ dependencies {
     implementation 'com.google.mlkit:text-recognition:16.0.0'
 
     // AndroidX i18n
-    implementation 'androidx.core:core-i18n:1.0.0-alpha01'
+    // core-i18n включён в core 1.13+
 
     // Аннотации (нужны для компиляции TalkBack utils)
     implementation 'com.google.errorprone:error_prone_annotations:2.26.1'
