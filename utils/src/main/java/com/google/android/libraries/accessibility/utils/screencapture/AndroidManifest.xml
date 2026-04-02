@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.google.android.libraries.accessibility.utils.screencapture"
+    android:versionCode="1"
+    android:versionName="1.0.0" >
+
+    <!-- The min SDK version 23 is for Select to Speak. -->
+    <uses-sdk
+        android:minSdkVersion="23"
+        android:targetSdkVersion="36" />
+
+    <application>
+
+        <activity
+            android:name="com.google.android.libraries.accessibility.utils.screencapture.ScreenshotAuthProxyActivity"
+            android:theme="@style/ScreenshotAuthoProxyActivityTheme"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="false" >
+        </activity>
+
+    </application>
+
+</manifest>

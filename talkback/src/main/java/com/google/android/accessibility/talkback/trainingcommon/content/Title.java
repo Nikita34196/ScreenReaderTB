@@ -1,0 +1,64 @@
+/*
+ * Copyright (C) 2020 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+package com.google.android.accessibility.talkback.trainingcommon.content;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import com.google.android.accessibility.talkback.R;
+import com.google.android.accessibility.talkback.trainingcommon.PageConfig;
+import com.google.android.accessibility.talkback.trainingcommon.TrainingIpcClient.ServiceData;
+
+/** A title shows at the beginning in general. */
+public class Title extends PageContentConfig {
+
+  /** Can be overridden by {@link #titleString}. */
+  @StringRes private final int titleResId;
+
+  /** Has precedence over {@link #titleResId}. */
+  @Nullable private final String titleString;
+
+  public Title(PageConfig pageConfig) {
+    titleResId = pageConfig.getPageNameResId();
+    titleString = pageConfig.getPageNameString();
+  }
+
+  @Override
+  public View createView(
+      LayoutInflater inflater, ViewGroup container, Context context, ServiceData data) {
+    final View view = inflater.inflate(R.layout.training_title, container, false);
+    final TextView title = view.findViewById(R.id.training_title);
+    if (titleString != null) {
+      title.setText(titleString);
+    } else {
+      title.setText(titleResId);
+    }
+    return view;
+  }
+
+  protected String provideFinalizedTitle(Context context) {
+    String finalizedTitle = titleString;
+    if (finalizedTitle == null) {
+      finalizedTitle = context.getString(titleResId);
+    }
+    return finalizedTitle;
+  }
+}

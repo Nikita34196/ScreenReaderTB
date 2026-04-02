@@ -1,0 +1,16 @@
+apply plugin: 'com.android.library'
+apply from: "../../shared.gradle"
+
+android {
+    namespace "com.google.android.accessibility.braille.brailledisplay"
+}
+
+dependencies {
+    implementation project(':proguard')
+    implementation project(':utils')
+    implementation project(':braillebrltty')
+    implementation project(':brailledisplayanalytics')
+    implementation project(':brailleinterfaces')
+    implementation project(':brailletranslate')
+    implementation project(':braillecommon')
+}
