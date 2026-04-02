@@ -1,0 +1,62 @@
+name: TalkBack Modified CI
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*.*.*' ]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Gradle 8.4
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.4'
+
+      - name: Write local.properties
+        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper --gradle-version 8.4
+
+      - name: Build Debug APK
+        run: ./gradlew assemblePhoneDebug --no-daemon --stacktrace
+
+      - name: Find APK
+        run: find . -name "*.apk" | head -5
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenreader-tb-debug
+          path: "**/*.apk"
+          retention-days: 30
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ScreenReader TB ${{ github.ref_name }}
+          body: |
+            ## ScreenReader TB ${{ github.ref_name }}
+            TalkBack с улучшениями:
+            - VoiceOver-стиль ротор
+            - AI распознавание иконок (Anthropic)
+            - Поддержка MAX мессенджера
+          files: "**/*.apk"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
