@@ -12,8 +12,8 @@ dependencies {
 }
 
 buildscript {
-    ext.gradle_plugin_version = "8.7.0"
-    ext.kotlin_version = "1.9.22"
+    ext.gradle_plugin_version = "8.9.1"
+    ext.kotlin_version = "2.0.0"
     repositories {
         mavenCentral()
         google()
