@@ -139,7 +139,7 @@ public class BrailleLanguages {
     List<Code> localeLanguageCodes =
         BrailleLanguages.getAvailableCodes(context).stream()
             .filter(code -> code.getLocale().getLanguage().equals(systemLocale.getLanguage()))
-            .collect(Collectors.toList());
+            .collect(Collectors.toUnmodifiableList());
     Optional<Code> firstLocaleCountryCode =
         localeLanguageCodes.stream()
             .filter(code -> code.getLocale().getCountry().equals(systemLocale.getCountry()))

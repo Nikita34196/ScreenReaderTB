@@ -72,7 +72,7 @@ import com.google.android.accessibility.utils.PreferenceSettingsUtils;
 import com.google.android.accessibility.utils.preference.PreferencesActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.ImmutableList;
+import java.util.List;
 import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
@@ -140,13 +140,13 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
           preferenceCategory.setTitle(subCategory.getName(getResources()));
           getPreferenceScreen().addPreference(preferenceCategory);
         }
-        ImmutableList<SupportedCommand> filteredCommands =
+        List<SupportedCommand> filteredCommands =
             SupportedCommand.getSupportedCommands(getContext()).stream()
                 .filter(
                     (SupportedCommand supportedCommand) ->
                         supportedCommand.getCategory() == category
                             && supportedCommand.getSubCategory() == subCategory)
-                .collect(Collectors.toList());
+                .collect(Collectors.toUnmodifiableList());
         for (SupportedCommand command : filteredCommands) {
           Preference preference = new Preference(getContext());
           preference.setTitle(command.getActionDescription(getContext()));
@@ -244,7 +244,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
         assignedGesture = null;
         keyboardView.tearDown();
         removeGestureAndUpdatePreferenceSummary(gesture);
-        writeGestureAction(brailleImeAction, ImmutableList.of(gesture.getId()));
+        writeGestureAction(brailleImeAction, List.of(gesture.getId()));
         updatePreferenceSummary(brailleImeAction);
         updateMirroredGesture(gesture);
       } else {
@@ -270,7 +270,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
     }
 
     private void removeGestureAndUpdatePreferenceSummary(Gesture gesture) {
-      ImmutableList<BrailleImeAction> otherActions = getOtherAction(gesture);
+      List<BrailleImeAction> otherActions = getOtherAction(gesture);
       if (otherActions.isEmpty()) {
         return;
       }
@@ -280,8 +280,8 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
         writeGestureAction(
             oldAction,
             gestures.isEmpty()
-                ? ImmutableList.of(UNASSIGNED_GESTURE.getId())
-                : gestures.stream().map(Gesture::getId).collect(Collectors.toList()));
+                ? List.of(UNASSIGNED_GESTURE.getId())
+                : gestures.stream().map(Gesture::getId).collect(Collectors.toUnmodifiableList()));
         updatePreferenceSummary(oldAction);
       }
     }
@@ -339,7 +339,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
     private void showGestureResultHint(Gesture gesture) {
       String title = gesture.getDescription(getResources());
       String hint = getString(R.string.custom_gesture_confirm);
-      ImmutableList<BrailleImeAction> otherAction = getOtherAction(gesture);
+      List<BrailleImeAction> otherAction = getOtherAction(gesture);
       if (!otherAction.isEmpty()) {
         hint =
             getString(
@@ -372,12 +372,12 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
       }
     }
 
-    private ImmutableList<BrailleImeAction> getOtherAction(Gesture gesture) {
+    private List<BrailleImeAction> getOtherAction(Gesture gesture) {
       List<BrailleImeAction> brailleImeActionList =
           BrailleImeGestureAction.getAction(getContext(), gesture);
       return brailleImeActionList.stream()
           .filter(action -> !action.equals(brailleImeAction))
-          .collect(Collectors.toList());
+          .collect(Collectors.toUnmodifiableList());
     }
 
     private boolean closeKeyboard(Swipe swipe) {
@@ -531,7 +531,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
 
           @Override
           public void onRemove() {
-            writeGestureAction(brailleImeAction, ImmutableList.of(UNASSIGNED_GESTURE.getId()));
+            writeGestureAction(brailleImeAction, List.of(UNASSIGNED_GESTURE.getId()));
             updatePreferenceSummary(brailleImeAction);
             showSnackBar(R.string.braille_keyboard_snackbar_remove, Snackbar.LENGTH_LONG);
           }
@@ -583,14 +583,14 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
         new ButtonClickListener() {
           @Override
           public void onMirrored(Gesture gesture) {
-            ImmutableList<BrailleImeAction> action = getOtherAction(gesture.mirrorDots());
+            List<BrailleImeAction> action = getOtherAction(gesture.mirrorDots());
             if (!action.isEmpty()) {
               // Mirrored is being used.
-              writeGestureAction(action.get(0), ImmutableList.of(UNASSIGNED_GESTURE.getId()));
+              writeGestureAction(action.get(0), List.of(UNASSIGNED_GESTURE.getId()));
               updatePreferenceSummary(action.get(0));
             }
             writeGestureAction(
-                brailleImeAction, ImmutableList.of(gesture.getId(), gesture.mirrorDots().getId()));
+                brailleImeAction, List.of(gesture.getId(), gesture.mirrorDots().getId()));
             updatePreferenceSummary(brailleImeAction);
             showSnackBar(
                 R.string.braille_keyboard_snackbar_change_mirrored_gesture, Snackbar.LENGTH_LONG);

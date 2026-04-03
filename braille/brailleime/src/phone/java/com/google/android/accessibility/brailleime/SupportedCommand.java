@@ -77,14 +77,14 @@ import androidx.annotation.StringRes;
 import com.google.android.accessibility.braille.common.BrailleImeAction;
 import com.google.android.accessibility.braille.interfaces.ImeAction;
 import com.google.android.accessibility.brailleime.input.Gesture;
-import com.google.common.collect.ImmutableList;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /** Commands supported by Braille keyboard. */
 public class SupportedCommand {
-  private static final ImmutableList<SupportedCommand> SUPPORTED_COMMANDS =
+  private static final List<SupportedCommand> SUPPORTED_COMMANDS =
       ImmutableList.<SupportedCommand>builder()
           .add(new SupportedCommand(ADD_SPACE_OR_NEXT_ITEM, BASIC, TYPING))
           .add(new SupportedCommand(DELETE_CHARACTER_OR_PREVIOUS_ITEM, BASIC, TYPING))
@@ -157,10 +157,10 @@ public class SupportedCommand {
   }
 
   /** Returns an immutable and order-sensitive {@link SupportedCommand} list. */
-  public static ImmutableList<SupportedCommand> getSupportedCommands(Context context) {
+  public static List<SupportedCommand> getSupportedCommands(Context context) {
     return SUPPORTED_COMMANDS.stream()
         .filter((SupportedCommand supportedCommand) -> supportedCommand.isAvailable(context))
-        .collect(Collectors.toList());
+        .collect(Collectors.toUnmodifiableList());
   }
 
   /** {@link SupportedCommand} category. */
@@ -183,10 +183,10 @@ public class SupportedCommand {
     ;
     @StringRes private final int titleRes;
     @StringRes private final int descriptionRes;
-    private final ImmutableList<SubCategory> subCategoryList;
+    private final List<SubCategory> subCategoryList;
 
     Category(@StringRes int titleRes, @StringRes int descriptionRes, SubCategory... subCategories) {
-      subCategoryList = ImmutableList.copyOf(Arrays.asList(subCategories));
+      subCategoryList = List.copyOf(Arrays.asList(subCategories));
       this.titleRes = titleRes;
       this.descriptionRes = descriptionRes;
     }

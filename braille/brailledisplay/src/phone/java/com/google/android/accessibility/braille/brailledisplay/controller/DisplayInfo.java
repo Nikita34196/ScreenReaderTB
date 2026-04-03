@@ -17,7 +17,7 @@
 package com.google.android.accessibility.braille.brailledisplay.controller;
 
 import com.google.auto.value.AutoValue;
-import com.google.common.collect.ImmutableList;
+import java.util.List;
 import java.nio.ByteBuffer;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public abstract class DisplayInfo {
 
   public abstract CharSequence displayedText();
 
-  public abstract ImmutableList<Integer> displayedBrailleToTextPositions();
+  public abstract List<Integer> displayedBrailleToTextPositions();
 
   public abstract boolean blink();
 

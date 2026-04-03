@@ -36,7 +36,7 @@ import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.braille.interfaces.BrailleWord;
 import com.google.android.accessibility.braille.interfaces.SelectionRange;
 import com.google.android.accessibility.braille.translate.TranslationResult;
-import com.google.common.collect.ImmutableList;
+import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -369,7 +369,7 @@ public class ContentHelper {
 
   private static int displayToTextPosition(
       TranslationResult translationResult, int displayPosition) {
-    ImmutableList<Integer> posMap = translationResult.brailleToTextPositions();
+    List<Integer> posMap = translationResult.brailleToTextPositions();
     // Any position past-the-end of the position map maps to the
     // corresponding past-the-end position in the braille.
     if (displayPosition < 0) {
@@ -382,7 +382,7 @@ public class ContentHelper {
 
   /** Returns braille character index of a text character index. May return {@link #NO_CURSOR}. */
   private static int textToDisplayPosition(TranslationResult translationResult, int textPosition) {
-    ImmutableList<Integer> posMap = translationResult.textToBraillePositions();
+    List<Integer> posMap = translationResult.textToBraillePositions();
     // Any position past-the-end of the position map maps to the
     // corresponding past-the-end position in the braille.
     if (textPosition < 0) {

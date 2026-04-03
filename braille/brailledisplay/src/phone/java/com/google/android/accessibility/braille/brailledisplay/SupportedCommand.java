@@ -18,7 +18,7 @@ package com.google.android.accessibility.braille.brailledisplay;
 
 import static androidx.core.content.res.ResourcesCompat.ID_NULL;
 import static com.google.android.accessibility.braille.common.translate.BrailleTranslateUtils.getDotsDescription;
-import static com.google.common.collect.ImmutableList.toImmutableList;
+import java.util.stream.Collectors;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -30,16 +30,16 @@ import com.google.android.accessibility.braille.brltty.BrailleInputEvent;
 import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.utils.FeatureSupport;
 import com.google.auto.value.AutoValue;
-import com.google.common.collect.ImmutableList;
+import java.util.List;
 import java.util.Locale;
 
 /** Commands supported by Braille display. */
 public class SupportedCommand {
-  private static ImmutableList<SupportedCommand> supportedCommands;
-  private static ImmutableList<SupportedCommand> allCommands;
+  private static List<SupportedCommand> supportedCommands;
+  private static List<SupportedCommand> allCommands;
 
   /** Returns an immutable and order-sensitive {@link SupportedCommand} list. */
-  public static ImmutableList<SupportedCommand> getAllCommands(Context context) {
+  public static List<SupportedCommand> getAllCommands(Context context) {
     if (allCommands == null) {
       ImmutableList.Builder<SupportedCommand> builder = ImmutableList.builder();
       builder
@@ -1291,12 +1291,12 @@ public class SupportedCommand {
   }
 
   /** Returns available supported commands. */
-  public static ImmutableList<SupportedCommand> getAvailableSupportedCommands(Context context) {
+  public static List<SupportedCommand> getAvailableSupportedCommands(Context context) {
     if (supportedCommands == null) {
       supportedCommands =
           getAllCommands(context).stream()
               .filter(SupportedCommand::isAvailable)
-              .collect(toImmutableList());
+              .collect(Collectors.toUnmodifiableList());
     }
     return supportedCommands;
   }

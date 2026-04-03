@@ -19,7 +19,7 @@ package com.google.android.accessibility.braille.brailledisplay.controller.wrapp
 import android.text.TextUtils;
 import android.util.SparseIntArray;
 import com.google.android.accessibility.braille.translate.TranslationResult;
-import com.google.common.collect.ImmutableList;
+import java.util.List;
 
 /**
  * Handles the presentation of braille content that doesn't completely fit on the braille display.
@@ -156,7 +156,7 @@ public abstract class WrapStrategy {
       return;
     }
 
-    ImmutableList<Integer> textToCell = translation.textToBraillePositions();
+    List<Integer> textToCell = translation.textToBraillePositions();
     int numCells = translation.cells().size();
     for (int i = 0; i < translation.text().length(); ++i) {
       if (translation.text().charAt(i) == '\n') {
