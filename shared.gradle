@@ -73,7 +73,7 @@ dependencies {
     implementation 'com.google.mlkit:text-recognition:16.0.0'
 
     // AndroidX i18n
-    implementation 'androidx.core:core-i18n:1.0.0-alpha02'
+    implementation 'androidx.core:core-i18n:1.0.0'
 
     // Аннотации (нужны для компиляции TalkBack utils)
     implementation 'com.google.errorprone:error_prone_annotations:2.26.1'
