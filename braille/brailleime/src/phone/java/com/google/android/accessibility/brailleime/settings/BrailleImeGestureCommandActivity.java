@@ -24,7 +24,7 @@ import static com.google.android.accessibility.brailleime.SupportedCommand.SubCa
 import static com.google.android.accessibility.brailleime.Utils.collapseNotificationPanel;
 import static com.google.android.accessibility.brailleime.Utils.highlightTalkBackSettings;
 import static com.google.android.accessibility.brailleime.settings.BrailleImeGestureActivity.CATEGORY;
-import static com.google.common.collect.ImmutableList.toImmutableList;
+import java.util.stream.Collectors;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -146,7 +146,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
                     (SupportedCommand supportedCommand) ->
                         supportedCommand.getCategory() == category
                             && supportedCommand.getSubCategory() == subCategory)
-                .collect(toImmutableList());
+                .collect(Collectors.toList());
         for (SupportedCommand command : filteredCommands) {
           Preference preference = new Preference(getContext());
           preference.setTitle(command.getActionDescription(getContext()));
@@ -281,7 +281,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
             oldAction,
             gestures.isEmpty()
                 ? ImmutableList.of(UNASSIGNED_GESTURE.getId())
-                : gestures.stream().map(Gesture::getId).collect(toImmutableList()));
+                : gestures.stream().map(Gesture::getId).collect(Collectors.toList()));
         updatePreferenceSummary(oldAction);
       }
     }
@@ -377,7 +377,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
           BrailleImeGestureAction.getAction(getContext(), gesture);
       return brailleImeActionList.stream()
           .filter(action -> !action.equals(brailleImeAction))
-          .collect(toImmutableList());
+          .collect(Collectors.toList());
     }
 
     private boolean closeKeyboard(Swipe swipe) {

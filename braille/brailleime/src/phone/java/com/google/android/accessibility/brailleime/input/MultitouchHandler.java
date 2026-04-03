@@ -16,7 +16,7 @@
 
 package com.google.android.accessibility.brailleime.input;
 
-import static com.google.common.collect.ImmutableList.toImmutableList;
+import java.util.stream.Collectors;
 
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
@@ -180,7 +180,7 @@ class MultitouchHandler {
   ImmutableList<PointF> getActivePoints() {
     return activePointers.values().stream()
         .map(pointerWithHistory -> pointerWithHistory.pointCurrent)
-        .collect(toImmutableList());
+        .collect(Collectors.toList());
   }
 
   private final Runnable tapOrSwipeRunnable =
@@ -438,7 +438,7 @@ class MultitouchHandler {
             pointerWithHistory ->
                 isAccumulationMode || recentRange.contains(pointerWithHistory.momentMadeInactive))
         .map(pointerWithHistory -> pointerWithHistory.pointCurrent)
-        .collect(toImmutableList());
+        .collect(Collectors.toList());
   }
 
   private ImmutableList<PointF> getRecentlyInactivatedInitialPoints(long eventTime) {
@@ -446,7 +446,7 @@ class MultitouchHandler {
     return inactivePointers.values().stream()
         .filter(pointerWithHistory -> recentRange.contains(pointerWithHistory.momentMadeInactive))
         .map(pointerWithHistory -> pointerWithHistory.pointInitial)
-        .collect(toImmutableList());
+        .collect(Collectors.toList());
   }
 
   private ImmutableList<PointerWithHistory> getRecentlyInactivatedPointsHistory(long eventTime) {
@@ -454,7 +454,7 @@ class MultitouchHandler {
     Range<Long> recentRange = new Range<>(now - RECENCY_MAX_MS, now);
     return inactivePointers.values().stream()
         .filter(pointerWithHistory -> recentRange.contains(pointerWithHistory.momentMadeInactive))
-        .collect(toImmutableList());
+        .collect(Collectors.toList());
   }
 
   private Optional<PointerWithHistory> getLastRecentlyInactivatedPointsHistory(long eventTime) {
@@ -468,7 +468,7 @@ class MultitouchHandler {
     return activePointers.values().stream()
         .filter(pointerWithHistory -> pointerWithHistory.isHoldInProgress)
         .map(pointerWithHistory -> pointerWithHistory.pointCurrent)
-        .collect(toImmutableList());
+        .collect(Collectors.toList());
   }
 
   private void transferPointerToInactive(int pointerId, long eventTime) {

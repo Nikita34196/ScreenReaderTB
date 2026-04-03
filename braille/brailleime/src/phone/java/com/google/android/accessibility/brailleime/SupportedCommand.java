@@ -69,7 +69,7 @@ import static com.google.android.accessibility.brailleime.SupportedCommand.SubCa
 import static com.google.android.accessibility.brailleime.SupportedCommand.SubCategory.TYPING;
 import static com.google.android.accessibility.brailleime.SupportedCommand.SubCategory.WORD;
 import static com.google.android.accessibility.brailleime.Utils.getCombinedGestureDescription;
-import static com.google.common.collect.ImmutableList.toImmutableList;
+import java.util.stream.Collectors;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -160,7 +160,7 @@ public class SupportedCommand {
   public static ImmutableList<SupportedCommand> getSupportedCommands(Context context) {
     return SUPPORTED_COMMANDS.stream()
         .filter((SupportedCommand supportedCommand) -> supportedCommand.isAvailable(context))
-        .collect(toImmutableList());
+        .collect(Collectors.toList());
   }
 
   /** {@link SupportedCommand} category. */
