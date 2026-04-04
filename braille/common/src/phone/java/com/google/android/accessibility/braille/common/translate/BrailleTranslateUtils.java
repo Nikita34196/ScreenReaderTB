@@ -23,7 +23,6 @@ import android.text.TextUtils;
 import com.google.android.accessibility.braille.common.R;
 import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.List;
 

@@ -37,6 +37,7 @@ import com.google.android.accessibility.brailleime.analytics.BrailleImeAnalytics
 import com.google.android.accessibility.brailleime.analytics.BrailleImeAnalytics.ContextMenuSelections;
 import com.google.android.accessibility.utils.material.MaterialComponentUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;

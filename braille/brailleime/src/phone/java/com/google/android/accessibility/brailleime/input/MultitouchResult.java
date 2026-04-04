@@ -19,6 +19,7 @@ package com.google.android.accessibility.brailleime.input;
 import android.graphics.PointF;
 import androidx.annotation.IntDef;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.lang.annotation.Retention;

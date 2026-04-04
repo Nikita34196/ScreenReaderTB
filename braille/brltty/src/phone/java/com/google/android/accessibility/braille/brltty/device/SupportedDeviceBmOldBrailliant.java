@@ -4,6 +4,7 @@ import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
@@ -53,7 +54,7 @@ public class SupportedDeviceBmOldBrailliant extends SupportedDevice {
         .add("Display5", R.string.key_hwg_brailliant_Display5)
         .add("Display6", R.string.key_hwg_brailliant_Display6)
         .routing()
-        .build();
+        ;
   }
 
   @Override

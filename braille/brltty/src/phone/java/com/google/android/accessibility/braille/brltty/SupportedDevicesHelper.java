@@ -38,6 +38,7 @@ import com.google.android.accessibility.braille.brltty.device.SupportedDeviceSk;
 import com.google.android.accessibility.braille.brltty.device.SupportedDeviceSkDisplay;
 import com.google.android.accessibility.braille.brltty.device.SupportedDeviceVo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

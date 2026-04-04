@@ -4,6 +4,7 @@ import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
@@ -59,7 +60,7 @@ public class SupportedDeviceAl extends SupportedDevice {
         .add("ThumbDown", R.string.key_albc_ThumbDown)
         .add("ThumbHome", R.string.key_albc_ThumbHome)
         .add("RoutingKey1", R.string.key_Routing)
-        .build();
+        ;
   }
 
   @Override

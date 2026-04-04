@@ -46,7 +46,7 @@ import java.util.Locale;
 public class BrailleDisplayImeStripView extends RelativeLayout implements OrientationSensitive {
   private static final int DURATION_MILLISECONDS = 150;
   private final Map<Integer, Integer> dotsResMap =
-      Map.<Integer, Integer>builder()
+      new HashMap<>()
           .put(1, R.drawable.dots_tapped_1)
           .put(2, R.drawable.dots_tapped_2)
           .put(3, R.drawable.dots_tapped_3)
@@ -55,7 +55,7 @@ public class BrailleDisplayImeStripView extends RelativeLayout implements Orient
           .put(6, R.drawable.dots_tapped_6)
           .put(7, R.drawable.dots_tapped_7)
           .put(8, R.drawable.dots_tapped_8)
-          .buildOrThrow();
+          ;
   private final boolean multiTouchSupported;
   private CallBack callBack;
   private ImageView dotsBackground;

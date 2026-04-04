@@ -80,7 +80,7 @@ public class EditBufferKorean2 extends EditBufferContracted {
   private static final HashMap<String, String> previousResultMap = new HashMap<>();
   private static final String TAG = "EditBufferKorean2";
   private static final Map<String, String> ABBREVIATION_VOWELS =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("1456", "ᅥᆨ")
           .put("23456", "ᅥᆫ")
           .put("2345", "ᅥᆯ")
@@ -95,9 +95,9 @@ public class EditBufferKorean2 extends EditBufferContracted {
           .put("1356", "ᅳᆫ")
           .put("2346", "ᅳᆯ")
           .put("12345", "ᅵᆫ")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> COMBINE_FINAL_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("ᆨᆨ", "ᆩ")
           .put("ᆨᆺ", "ᆪ")
           .put("ᆫᆽ", "ᆬ")
@@ -109,9 +109,9 @@ public class EditBufferKorean2 extends EditBufferContracted {
           .put("ᆯᇀ", "ᆴ")
           .put("ᆯᇁ", "ᆵ")
           .put("ᆯᇂ", "ᆶ")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> SPECIAL_ABBREVIATION_VOWELS =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("1456", "억")
           .put("23456", "언")
           .put("2345", "얼")
@@ -126,16 +126,16 @@ public class EditBufferKorean2 extends EditBufferContracted {
           .put("1356", "은")
           .put("2346", "을")
           .put("12345", "인")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> SPECIAL_ABBREVIATION_CHARS =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("1246", "가")
           .put("123", "사")
           .put("6-1246", "까")
           .put("6-123", "싸")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> ABBREVIATION_CHARACTERS =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("14", "나")
           .put("24", "다")
           .put("15", "마")
@@ -145,9 +145,9 @@ public class EditBufferKorean2 extends EditBufferContracted {
           .put("125", "타")
           .put("145", "파")
           .put("245", "하")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> ABBREVIATION_WORD =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("456-234", "것")
           .put("1-234", "그래서")
           .put("1-14", "그러나")
@@ -156,7 +156,7 @@ public class EditBufferKorean2 extends EditBufferContracted {
           .put("1-1345", "그런데")
           .put("1-136", "그리고")
           .put("1-156", "그리하여")
-          .buildOrThrow();
+          ;
   private final KoreanContractedExceptionalCase exceptionalCase =
       new KoreanContractedExceptionalCase();
   private final Context koreanContext;

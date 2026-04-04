@@ -4,6 +4,7 @@ import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
@@ -42,7 +43,7 @@ public class SupportedDeviceBmVarioUltra extends SupportedDevice {
         .add("Display5", R.string.key_APH_AdvanceRight)
         .add("B9", R.string.key_Space)
         .add("B10", R.string.key_Space)
-        .build();
+        ;
   }
 
   @Override

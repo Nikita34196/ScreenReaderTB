@@ -31,7 +31,7 @@ import java.util.Map;
 public class EditBufferDanish2 extends EditBufferContracted {
 
   private static final Map<String, String> INITIAL_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("1", "a")
           .put("12", "b")
           .put("14", "c")
@@ -61,7 +61,7 @@ public class EditBufferDanish2 extends EditBufferContracted {
           .put("345", "æ")
           .put("246", "ø")
           .put("16", "å")
-          .buildOrThrow();
+          ;
 
   public EditBufferDanish2(
       Context context, BrailleTranslator translator, TalkBackSpeaker talkBack) {

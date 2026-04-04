@@ -38,7 +38,7 @@ public class BrailleTranslateUtilsKorean {
           "갚", "겊", "깊", "높", "닢", "덮", "랖", "릎", "붚", "섶", "싶", "엎", "읖", "짚", "톺");
   // This map is for converting pronunciation from initial cons. to used alone
   private static final Map<String, String> INPUT_TEXT_MAP_FOR_SPEAKING =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("ᄀ", "ㄱ")
           .put("ᄁ", "ㄲ")
           .put("ᄂ", "ㄴ")
@@ -58,10 +58,10 @@ public class BrailleTranslateUtilsKorean {
           .put("ᄐ", "ㅌ")
           .put("ᄑ", "ㅍ")
           .put("ᄒ", "ㅎ")
-          .buildOrThrow();
+          ;
 
   private static final Map<String, String> INITIAL_CONSONANTS_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("4", String.valueOf(INIT_CONSONANT_START_CHARACTER)) // ㄱ
           .put("6-4", String.valueOf((char) (INIT_CONSONANT_START_CHARACTER + 1))) // ㄲ
           .put("14", String.valueOf((char) (INIT_CONSONANT_START_CHARACTER + 2))) // ㄴ
@@ -81,10 +81,10 @@ public class BrailleTranslateUtilsKorean {
           .put("125", String.valueOf((char) (INIT_CONSONANT_START_CHARACTER + 16))) // ㅌ
           .put("145", String.valueOf((char) (INIT_CONSONANT_START_CHARACTER + 17))) // ㅍ
           .put("245", String.valueOf((char) (INIT_CONSONANT_START_CHARACTER + 18))) // ㅎ
-          .buildOrThrow();
+          ;
 
   private static final Map<String, String> VOWEL_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("126", String.valueOf(VOWEL_CONSONANT_START_CHARACTER)) // ㅏ
           .put("1235", String.valueOf((char) (VOWEL_CONSONANT_START_CHARACTER + 1))) // ㅐ
           .put("345", String.valueOf((char) (VOWEL_CONSONANT_START_CHARACTER + 2))) // ㅑ
@@ -106,9 +106,9 @@ public class BrailleTranslateUtilsKorean {
           .put("246", String.valueOf((char) (VOWEL_CONSONANT_START_CHARACTER + 18))) // ㅡ
           .put("2456", String.valueOf((char) (VOWEL_CONSONANT_START_CHARACTER + 19))) // ㅢ
           .put("135", String.valueOf((char) (VOWEL_CONSONANT_START_CHARACTER + 20))) // ㅣ
-          .buildOrThrow();
+          ;
   private static final Map<String, String> FINAL_CONSONANTS_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("1", String.valueOf(FINAL_CONSONANT_START_CHARACTER)) // ㄱ
           .put("1-1", String.valueOf((char) (FINAL_CONSONANT_START_CHARACTER + 1))) // ㄲ
           .put("1-3", String.valueOf((char) (FINAL_CONSONANT_START_CHARACTER + 2))) // ㄳ
@@ -136,10 +136,10 @@ public class BrailleTranslateUtilsKorean {
           .put("236", String.valueOf((char) (FINAL_CONSONANT_START_CHARACTER + 24))) // ㅌ
           .put("256", String.valueOf((char) (FINAL_CONSONANT_START_CHARACTER + 25))) // ㅍ
           .put("356", String.valueOf((char) (FINAL_CONSONANT_START_CHARACTER + 26))) // ㅎ
-          .buildOrThrow();
+          ;
   // If vowel is coming at first, it should be added "ㅇ" consonant
   private static final Map<String, String> SPECIAL_O_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("126", "아")
           .put("345", "야")
           .put("234", "어")
@@ -163,9 +163,9 @@ public class BrailleTranslateUtilsKorean {
           .put("1234", "워")
           .put("1234-1235", "웨")
           .put("134-1235", "위")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> OPEN_SYMBOL_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("236", "“")
           .put("6-236", "'")
           .put("236-3", "(")
@@ -184,9 +184,9 @@ public class BrailleTranslateUtilsKorean {
           .put("36", "-")
           .put("235", "!")
           .put("256", ".")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> CLOSE_SYMBOL_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("356", "”")
           .put("356-3", "'")
           .put("6-356", ")")
@@ -194,16 +194,16 @@ public class BrailleTranslateUtilsKorean {
           .put("56-356", "]")
           .put("356-2", ">")
           .put("356-23", "》")
-          .buildOrThrow();
+          ;
   // For contracted Korean braille only.
   private static final Map<String, String> CHANGE_SYMBOL_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("256-", ". ")
           .put("236-", "? ")
           .put("235-", "!")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> SYMBOL_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("356-1234", "%")
           .put("26", "+")
           .put("35", "-")
@@ -225,9 +225,9 @@ public class BrailleTranslateUtilsKorean {
           .put("56-23", ";")
           .put("35-35", "※")
           .put("456-34", "/")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> NUMBER_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("3456", "")
           .put("1", "1")
           .put("12", "2")
@@ -239,9 +239,9 @@ public class BrailleTranslateUtilsKorean {
           .put("125", "8")
           .put("24", "9")
           .put("245", "0")
-          .buildOrThrow();
+          ;
   private static final Map<String, String> CIRCLE_NUMBER_TRANSLATION_MAP =
-      Map.<String, String>builder()
+      new HashMap<>()
           .put("3456-2", "①")
           .put("3456-23", "②")
           .put("3456-25", "③")
@@ -251,7 +251,7 @@ public class BrailleTranslateUtilsKorean {
           .put("3456-2356", "⑦")
           .put("3456-236", "⑧")
           .put("3456-35", "⑨")
-          .buildOrThrow();
+          ;
 
   public static String combineDots(String firstDot, String secondDot) {
     return firstDot + HYPHEN + secondDot;

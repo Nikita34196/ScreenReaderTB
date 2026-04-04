@@ -36,6 +36,7 @@ import com.google.android.accessibility.braille.translate.TranslatorFactory;
 import com.google.android.accessibility.braille.translate.liblouis.LibLouis;
 import com.google.android.accessibility.utils.SharedPreferencesUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;

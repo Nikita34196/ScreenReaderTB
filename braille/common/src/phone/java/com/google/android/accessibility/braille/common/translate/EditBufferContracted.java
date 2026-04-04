@@ -38,7 +38,6 @@ import com.google.android.accessibility.braille.interfaces.BrailleWord;
 import com.google.android.accessibility.braille.translate.BrailleTranslator;
 import com.google.common.base.Strings;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
@@ -155,7 +154,7 @@ public abstract class EditBufferContracted implements EditBuffer {
       for (int i = 0; i < holdings.size(); i++) {
         holdingsStringBuilder.add(getAnnouncement(context.getResources(), translator, holdings, i));
       }
-      String deletedWord = TextUtils.join(DELIMITER, holdingsStringBuilder.build());
+      String deletedWord = TextUtils.join(DELIMITER, holdingsStringBuilder);
       deletedWord = hideTextForPasswordIfNecessary(imeConnection, deletedWord, holdings.size());
       EditBufferUtils.speakDelete(context, talkBack, deletedWord);
       holdingPosition = NO_CURSOR;

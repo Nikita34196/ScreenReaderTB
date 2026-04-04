@@ -60,6 +60,7 @@ import com.google.android.accessibility.brailleime.input.Swipe;
 import com.google.android.accessibility.brailleime.input.Swipe.Direction;
 import com.google.android.accessibility.brailleime.input.UnassignedGesture;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashMap;
@@ -80,7 +81,7 @@ public final class BrailleImeGestureAction {
   // We assume users are right-handed by default, meaning they would hold the dots with their left
   // fingers and swipe with their right.
   private static final Map<BrailleImeAction, Gesture> DEFAULT_ACTION_GESTURE =
-      Map.<BrailleImeAction, Gesture>builder()
+      new HashMap<>()
           .put(MOVE_CURSOR_BACKWARD, new Swipe(Direction.UP, /* touchCount= */ 1))
           .put(MOVE_CURSOR_FORWARD, new Swipe(Direction.DOWN, /* touchCount= */ 1))
           .put(ADD_SPACE_OR_NEXT_ITEM, new Swipe(Direction.RIGHT, /* touchCount= */ 1))
@@ -173,7 +174,7 @@ public final class BrailleImeGestureAction {
               END_OF_PAGE,
               new DotHoldSwipe(
                   new Swipe(Direction.DOWN, /* touchCount= */ 1), new BrailleCharacter(4, 5)))
-          .buildOrThrow();
+          ;
 
   private static final Map<BrailleImeAction, List<Gesture>>
       DEFAULT_ACTION_GESTURE_MIRRORED = createMapWithMirroredDots();
@@ -257,7 +258,7 @@ public final class BrailleImeGestureAction {
         gesturesBuilder.add(gesture);
       }
     }
-    return gesturesBuilder.build();
+    return gesturesBuilder;
   }
 
   /** Returns the gesture of the given action or null if no match exists. */
@@ -302,7 +303,7 @@ public final class BrailleImeGestureAction {
       }
       currentlyUsingActionGestureMap.put(defaultAction, list);
     }
-    return Map.copyOf(currentlyUsingActionGestureMap);
+    return new HashMap<>(currentlyUsingActionGestureMap);
   }
 
   @Nullable
@@ -331,7 +332,7 @@ public final class BrailleImeGestureAction {
 
   private static Map<BrailleImeAction, List<Gesture>>
       createMapWithMirroredDots() {
-    Map.Builder<BrailleImeAction, List<Gesture>> builder = Map.builder();
+    Map.Builder<BrailleImeAction, List<Gesture>> builder = new HashMap<>();
     for (BrailleImeAction action : BrailleImeAction.values()) {
       List<Gesture> gestures;
       if (DEFAULT_ACTION_GESTURE.containsKey(action)) {
@@ -343,7 +344,7 @@ public final class BrailleImeGestureAction {
       }
       builder.put(action, gestures);
     }
-    return builder.buildOrThrow();
+    return builder;
   }
 
   private static List<Gesture> getDefaultGestures(BrailleImeAction action) {
@@ -353,7 +354,7 @@ public final class BrailleImeGestureAction {
     if (!defaultGesture.equals(defaultGesture.mirrorDots())) {
       gesturesBuilder.add(defaultGesture.mirrorDots());
     }
-    return gesturesBuilder.build();
+    return gesturesBuilder;
   }
 
   private BrailleImeGestureAction() {}

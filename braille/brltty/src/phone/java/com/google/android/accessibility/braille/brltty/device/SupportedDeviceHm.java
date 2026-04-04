@@ -4,6 +4,7 @@ import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
@@ -49,7 +50,7 @@ public class SupportedDeviceHm extends SupportedDevice {
         .add("F4", R.string.key_F4)
         .add("Backward", R.string.key_Backward)
         .add("Forward", R.string.key_Forward)
-        .build();
+        ;
   }
 
   @Override

@@ -191,7 +191,7 @@ public class BtConnectManager extends ConnectManager {
     return bondedDevices.stream()
         .map(
             bluetoothDevice ->
-                ConnectableBluetoothDevice.builder().setBluetoothDevice(bluetoothDevice).build())
+                ConnectableBluetoothDevice.builder().setBluetoothDevice(bluetoothDevice))
         .collect(Collectors.toSet());
   }
 
@@ -459,7 +459,7 @@ public class BtConnectManager extends ConnectManager {
         public void onDeviceSeen(BluetoothDevice device) {
           BrailleDisplayLog.d(TAG, "onDeviceSeen");
           ConnectableBluetoothDevice connectedDevice =
-              ConnectableBluetoothDevice.builder().setBluetoothDevice(device).build();
+              ConnectableBluetoothDevice.builder().setBluetoothDevice(device);
           foundDevices.add(connectedDevice);
           connectManagerCallback.onDeviceSeenOrUpdated(connectedDevice);
         }
@@ -496,7 +496,7 @@ public class BtConnectManager extends ConnectManager {
         public void onBonded(BluetoothDevice bluetoothDevice) {
           BrailleDisplayLog.d(TAG, "onBonded");
           ConnectableDevice device =
-              ConnectableBluetoothDevice.builder().setBluetoothDevice(bluetoothDevice).build();
+              ConnectableBluetoothDevice.builder().setBluetoothDevice(bluetoothDevice);
           if (isConnecting(device.address())) {
             BrailleDisplayLog.d(TAG, "It's waiting for result!");
             bondingDevice.set(null);
@@ -509,7 +509,7 @@ public class BtConnectManager extends ConnectManager {
         public void onUnBonded(BluetoothDevice device) {
           BrailleDisplayLog.d(TAG, "onUnBonded");
           connectManagerCallback.onDeviceDeleted(
-              ConnectableBluetoothDevice.builder().setBluetoothDevice(device).build());
+              ConnectableBluetoothDevice.builder().setBluetoothDevice(device));
         }
 
         @Override
@@ -524,7 +524,7 @@ public class BtConnectManager extends ConnectManager {
           // confirms, onBonded callback will signify successful pairing.
           if (!isConnectingOrConnected()) {
             connectManagerCallback.onDeviceSeenOrUpdated(
-                ConnectableBluetoothDevice.builder().setBluetoothDevice(device).build());
+                ConnectableBluetoothDevice.builder().setBluetoothDevice(device));
           }
         }
 
@@ -541,7 +541,7 @@ public class BtConnectManager extends ConnectManager {
         public void onUpdated(BluetoothDevice device) {
           BrailleDisplayLog.d(TAG, "onUpdated");
           connectManagerCallback.onDeviceSeenOrUpdated(
-              ConnectableBluetoothDevice.builder().setBluetoothDevice(device).build());
+              ConnectableBluetoothDevice.builder().setBluetoothDevice(device));
         }
       };
 }

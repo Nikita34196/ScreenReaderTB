@@ -4,6 +4,7 @@ import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
@@ -42,7 +43,7 @@ public class SupportedDeviceHmBrailleSense extends SupportedDevice {
         .add("LeftScrollDown", R.string.key_LeftScrollDown)
         .add("RightScrollUp", R.string.key_RightScrollUp)
         .add("RightScrollDown", R.string.key_RightScrollDown)
-        .build();
+        ;
   }
 
   @Override

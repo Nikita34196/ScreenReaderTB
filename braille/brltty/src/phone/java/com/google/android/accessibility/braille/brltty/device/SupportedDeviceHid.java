@@ -4,6 +4,7 @@ import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
@@ -45,7 +46,7 @@ public class SupportedDeviceHid extends SupportedDevice {
         .add("DPadCenter", R.string.key_dpad_center)
         .add("RockerUp", R.string.key_rocker_up)
         .add("RockerDown", R.string.key_rocker_down)
-        .build();
+        ;
   }
 
   @Override

@@ -43,6 +43,7 @@ import com.google.android.accessibility.brailleime.input.BrailleInputPlane.Custo
 import com.google.android.accessibility.brailleime.input.BrailleInputPlane.DotTarget;
 import com.google.android.accessibility.brailleime.input.MultitouchHandler.HoldRecognizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;

@@ -4,6 +4,7 @@ import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
@@ -75,7 +76,7 @@ public class SupportedDeviceEu extends SupportedDevice {
         .add("Backspace", R.string.key_Backspace)
         .add("Space", R.string.key_Space)
         .add("RoutingKey1", R.string.key_Routing)
-        .build();
+        ;
   }
 
   @Override
