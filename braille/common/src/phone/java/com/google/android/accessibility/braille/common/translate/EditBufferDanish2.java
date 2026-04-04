@@ -23,14 +23,15 @@ import android.content.Context;
 import com.google.android.accessibility.braille.common.TalkBackSpeaker;
 import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.braille.translate.BrailleTranslator;
-import com.google.common.collect.ImmutableMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Map;
 
 /** An EditBuffer for Danish Braille Grade 2. */
 public class EditBufferDanish2 extends EditBufferContracted {
 
-  private static final ImmutableMap<String, String> INITIAL_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> INITIAL_MAP =
+      Map.<String, String>builder()
           .put("1", "a")
           .put("12", "b")
           .put("14", "c")

@@ -3,8 +3,11 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,10 +15,10 @@ import java.util.regex.Pattern;
 
 /** Supported device info for Freedom Scientific Focus blue displays. */
 public class SupportedDeviceFs extends SupportedDevice {
-  private static final ImmutableList<Pattern> NAME_REGEXES =
-      ImmutableList.of(Pattern.compile("Focus (5|40|14|80) (BT|HID)"), Pattern.compile("FOCUS"));
-  private static final ImmutableSet<Pair<Integer, Integer>> VENDOR_PROD_IDS =
-      ImmutableSet.of(
+  private static final List<Pattern> NAME_REGEXES =
+      List.of(Pattern.compile("Focus (5|40|14|80) (BT|HID)"), Pattern.compile("FOCUS"));
+  private static final Set<Pair<Integer, Integer>> VENDOR_PROD_IDS =
+      Set.of(
           // Focus 1.
           new Pair<>(0xF4E, 0x100),
           // Pacmate.

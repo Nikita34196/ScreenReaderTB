@@ -3,8 +3,11 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,10 +15,10 @@ import java.util.regex.Pattern;
 
 /** Supported device info for Alva BC640/BC680. */
 public class SupportedDeviceAl extends SupportedDevice {
-  private static final ImmutableList<Pattern> NAME_REGEXES =
-      ImmutableList.of(Pattern.compile("Alva BC", Pattern.CASE_INSENSITIVE));
-  private static final ImmutableSet<Pair<Integer, Integer>> VENDOR_PROD_IDS =
-      ImmutableSet.of(
+  private static final List<Pattern> NAME_REGEXES =
+      List.of(Pattern.compile("Alva BC", Pattern.CASE_INSENSITIVE));
+  private static final Set<Pair<Integer, Integer>> VENDOR_PROD_IDS =
+      Set.of(
           // Alva [BC624]
           new Pair<>(0X0798, 0X0624),
           // Alva [BC640]

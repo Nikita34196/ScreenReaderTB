@@ -19,6 +19,8 @@ package com.google.android.accessibility.braille.brailledisplay.controller.wrapp
 import android.text.TextUtils;
 import android.util.SparseIntArray;
 import com.google.android.accessibility.braille.translate.TranslationResult;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**

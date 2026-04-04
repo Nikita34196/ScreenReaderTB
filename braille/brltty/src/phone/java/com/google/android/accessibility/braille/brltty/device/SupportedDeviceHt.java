@@ -3,8 +3,11 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,15 +15,15 @@ import java.util.regex.Pattern;
 
 /** Supported device info for HandyTech displays. */
 public class SupportedDeviceHt extends SupportedDevice {
-  private static final ImmutableList<Pattern> NAME_REGEXES =
-      ImmutableList.of(
+  private static final List<Pattern> NAME_REGEXES =
+      List.of(
           Pattern.compile(
               "(Braille Wave( BRW)?|Braillino( BL2)?|Braille Star 40( BS4)?|Easy Braille("
                   + " EBR)?|Active Braille( AB4)?|Basic Braille"
                   + " BB[3,4,6]?)\\/[a-zA-Z][0-9]-[0-9]{5}|Actilino|Activator"),
           Pattern.compile("(BRW|BL2|BS4|EBR|AB4|BB(3|4|6)?)\\/[a-zA-Z][0-9]-[0-9]{5}"));
-  private static final ImmutableSet<Pair<Integer, Integer>> VENDOR_PROD_IDS =
-      ImmutableSet.of(
+  private static final Set<Pair<Integer, Integer>> VENDOR_PROD_IDS =
+      Set.of(
           // HandyTech [GoHubs chip]
           new Pair<>(0X0921, 0X1200),
           // HandyTech [Active Braille]

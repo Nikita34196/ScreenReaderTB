@@ -45,8 +45,11 @@ import com.google.android.accessibility.brailleime.R;
 import com.google.android.accessibility.brailleime.Utils;
 import com.google.android.accessibility.brailleime.input.MultitouchHandler.HoldRecognizer;
 import com.google.android.accessibility.brailleime.input.MultitouchHandler.MultitouchResultListener;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -77,8 +80,8 @@ public abstract class BrailleInputPlane {
   private static final int GROUP_COUNT = 2;
   private static final int CALIBRATION_MAXIMUM_FAIL_COUNT = 3;
 
-  private static final ImmutableMap<InputDotType, int[]> dotNumberOrderMap =
-      ImmutableMap.<InputDotType, int[]>builder()
+  private static final Map<InputDotType, int[]> dotNumberOrderMap =
+      Map.<InputDotType, int[]>builder()
           .put(InputDotType.SCREEN_AWAY, new int[] {1, 2, 3, 4, 5, 6})
           .put(InputDotType.SCREEN_AWAY_EIGHT_DOT, new int[] {1, 2, 3, 7, 4, 5, 6, 8})
           .put(InputDotType.TABLE_TOP, new int[] {3, 2, 1, 4, 5, 6})
@@ -283,7 +286,7 @@ public abstract class BrailleInputPlane {
   }
 
   public List<DotTarget> getDotTargets() {
-    return Collections.unmodifiableList(ImmutableList.copyOf(dotTargets));
+    return Collections.unmodifiableList(new ArrayList<>(dotTargets));
   }
 
   private void refresh() {

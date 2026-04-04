@@ -11,8 +11,10 @@ import com.google.android.accessibility.braille.common.BrailleCommonLog;
 import com.google.android.accessibility.braille.common.BrailleCommonUtils;
 import com.google.android.accessibility.braille.common.ImeConnection;
 import com.google.android.accessibility.braille.interfaces.BrailleWord;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,13 +32,13 @@ public class BrailleTranslateUtilsKorean {
   private static final char VOWEL_CONSONANT_START_CHARACTER = 0x1161;
   private static final char FINAL_CONSONANT_START_CHARACTER = 0x11A8;
   private static final ArrayList<String> completedHangul = new ArrayList<>();
-  private static final ImmutableSet<String> EXCEPT_FROM_COMPLETED_HANGUL =
-      ImmutableSet.of(
+  private static final Set<String> EXCEPT_FROM_COMPLETED_HANGUL =
+      Set.of(
           "엌", "읔", "같", "곁", "깥", "꼍", "낱", "돝", "릍", "뭍", "샅", "앝", "얕", "옅", "읕", "짙", "홑", "흩",
           "갚", "겊", "깊", "높", "닢", "덮", "랖", "릎", "붚", "섶", "싶", "엎", "읖", "짚", "톺");
   // This map is for converting pronunciation from initial cons. to used alone
-  private static final ImmutableMap<String, String> INPUT_TEXT_MAP_FOR_SPEAKING =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> INPUT_TEXT_MAP_FOR_SPEAKING =
+      Map.<String, String>builder()
           .put("ᄀ", "ㄱ")
           .put("ᄁ", "ㄲ")
           .put("ᄂ", "ㄴ")
@@ -58,8 +60,8 @@ public class BrailleTranslateUtilsKorean {
           .put("ᄒ", "ㅎ")
           .buildOrThrow();
 
-  private static final ImmutableMap<String, String> INITIAL_CONSONANTS_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> INITIAL_CONSONANTS_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("4", String.valueOf(INIT_CONSONANT_START_CHARACTER)) // ㄱ
           .put("6-4", String.valueOf((char) (INIT_CONSONANT_START_CHARACTER + 1))) // ㄲ
           .put("14", String.valueOf((char) (INIT_CONSONANT_START_CHARACTER + 2))) // ㄴ
@@ -81,8 +83,8 @@ public class BrailleTranslateUtilsKorean {
           .put("245", String.valueOf((char) (INIT_CONSONANT_START_CHARACTER + 18))) // ㅎ
           .buildOrThrow();
 
-  private static final ImmutableMap<String, String> VOWEL_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> VOWEL_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("126", String.valueOf(VOWEL_CONSONANT_START_CHARACTER)) // ㅏ
           .put("1235", String.valueOf((char) (VOWEL_CONSONANT_START_CHARACTER + 1))) // ㅐ
           .put("345", String.valueOf((char) (VOWEL_CONSONANT_START_CHARACTER + 2))) // ㅑ
@@ -105,8 +107,8 @@ public class BrailleTranslateUtilsKorean {
           .put("2456", String.valueOf((char) (VOWEL_CONSONANT_START_CHARACTER + 19))) // ㅢ
           .put("135", String.valueOf((char) (VOWEL_CONSONANT_START_CHARACTER + 20))) // ㅣ
           .buildOrThrow();
-  private static final ImmutableMap<String, String> FINAL_CONSONANTS_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> FINAL_CONSONANTS_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("1", String.valueOf(FINAL_CONSONANT_START_CHARACTER)) // ㄱ
           .put("1-1", String.valueOf((char) (FINAL_CONSONANT_START_CHARACTER + 1))) // ㄲ
           .put("1-3", String.valueOf((char) (FINAL_CONSONANT_START_CHARACTER + 2))) // ㄳ
@@ -136,8 +138,8 @@ public class BrailleTranslateUtilsKorean {
           .put("356", String.valueOf((char) (FINAL_CONSONANT_START_CHARACTER + 26))) // ㅎ
           .buildOrThrow();
   // If vowel is coming at first, it should be added "ㅇ" consonant
-  private static final ImmutableMap<String, String> SPECIAL_O_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> SPECIAL_O_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("126", "아")
           .put("345", "야")
           .put("234", "어")
@@ -162,8 +164,8 @@ public class BrailleTranslateUtilsKorean {
           .put("1234-1235", "웨")
           .put("134-1235", "위")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> OPEN_SYMBOL_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> OPEN_SYMBOL_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("236", "“")
           .put("6-236", "'")
           .put("236-3", "(")
@@ -183,8 +185,8 @@ public class BrailleTranslateUtilsKorean {
           .put("235", "!")
           .put("256", ".")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> CLOSE_SYMBOL_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> CLOSE_SYMBOL_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("356", "”")
           .put("356-3", "'")
           .put("6-356", ")")
@@ -194,14 +196,14 @@ public class BrailleTranslateUtilsKorean {
           .put("356-23", "》")
           .buildOrThrow();
   // For contracted Korean braille only.
-  private static final ImmutableMap<String, String> CHANGE_SYMBOL_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> CHANGE_SYMBOL_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("256-", ". ")
           .put("236-", "? ")
           .put("235-", "!")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> SYMBOL_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> SYMBOL_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("356-1234", "%")
           .put("26", "+")
           .put("35", "-")
@@ -224,8 +226,8 @@ public class BrailleTranslateUtilsKorean {
           .put("35-35", "※")
           .put("456-34", "/")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> NUMBER_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> NUMBER_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("3456", "")
           .put("1", "1")
           .put("12", "2")
@@ -238,8 +240,8 @@ public class BrailleTranslateUtilsKorean {
           .put("24", "9")
           .put("245", "0")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> CIRCLE_NUMBER_TRANSLATION_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> CIRCLE_NUMBER_TRANSLATION_MAP =
+      Map.<String, String>builder()
           .put("3456-2", "①")
           .put("3456-23", "②")
           .put("3456-25", "③")

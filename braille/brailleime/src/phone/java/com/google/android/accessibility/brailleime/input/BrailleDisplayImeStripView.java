@@ -37,15 +37,16 @@ import com.google.android.accessibility.brailleime.BrailleIme.OrientationSensiti
 import com.google.android.accessibility.brailleime.FeatureFlagReader;
 import com.google.android.accessibility.brailleime.R;
 import com.google.android.accessibility.brailleime.Utils;
-import com.google.common.collect.ImmutableMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 import java.util.Locale;
 
 /** A strip which shows when braille display is connected. */
 public class BrailleDisplayImeStripView extends RelativeLayout implements OrientationSensitive {
   private static final int DURATION_MILLISECONDS = 150;
-  private final ImmutableMap<Integer, Integer> dotsResMap =
-      ImmutableMap.<Integer, Integer>builder()
+  private final Map<Integer, Integer> dotsResMap =
+      Map.<Integer, Integer>builder()
           .put(1, R.drawable.dots_tapped_1)
           .put(2, R.drawable.dots_tapped_2)
           .put(3, R.drawable.dots_tapped_3)

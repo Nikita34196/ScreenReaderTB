@@ -3,8 +3,11 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,8 +15,8 @@ import java.util.regex.Pattern;
 
 /** Supported device info for Seika Braille Display. No Braille keys on this display. */
 public class SupportedDeviceSkDisplay extends SupportedDevice {
-  private static final ImmutableList<Pattern> NAME_REGEXES =
-      ImmutableList.of(Pattern.compile("TS5"));
+  private static final List<Pattern> NAME_REGEXES =
+      List.of(Pattern.compile("TS5"));
 
   @Override
   public String driverCode() {
@@ -43,7 +46,7 @@ public class SupportedDeviceSkDisplay extends SupportedDevice {
 
   @Override
   public Set<Pair<Integer, Integer>> vendorProdIds() {
-    return ImmutableSet.of();
+    return Set.of();
   }
 
   @Override

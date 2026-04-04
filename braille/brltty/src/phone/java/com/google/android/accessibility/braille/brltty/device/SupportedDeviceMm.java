@@ -3,8 +3,11 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,8 +15,8 @@ import java.util.regex.Pattern;
 
 /** Supported device info for KGS devices. */
 public class SupportedDeviceMm extends SupportedDevice {
-  private static final ImmutableList<Pattern> NAME_REGEXES =
-      ImmutableList.of(Pattern.compile("BM-NextTouch"));
+  private static final List<Pattern> NAME_REGEXES =
+      List.of(Pattern.compile("BM-NextTouch"));
 
   @Override
   public String driverCode() {
@@ -32,7 +35,7 @@ public class SupportedDeviceMm extends SupportedDevice {
 
   @Override
   public Set<Pair<Integer, Integer>> vendorProdIds() {
-    return ImmutableSet.of();
+    return Set.of();
   }
 
   @Override

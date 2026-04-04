@@ -36,6 +36,8 @@ import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.braille.interfaces.BrailleWord;
 import com.google.android.accessibility.braille.interfaces.SelectionRange;
 import com.google.android.accessibility.braille.translate.TranslationResult;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.nio.ByteBuffer;

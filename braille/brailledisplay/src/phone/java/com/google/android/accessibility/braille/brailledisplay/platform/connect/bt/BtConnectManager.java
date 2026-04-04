@@ -16,7 +16,7 @@
 
 package com.google.android.accessibility.braille.brailledisplay.platform.connect.bt;
 
-import static com.google.common.collect.ImmutableSet.toImmutableSet;
+import java.util.stream.Collectors;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -192,7 +192,7 @@ public class BtConnectManager extends ConnectManager {
         .map(
             bluetoothDevice ->
                 ConnectableBluetoothDevice.builder().setBluetoothDevice(bluetoothDevice).build())
-        .collect(toImmutableSet());
+        .collect(Collectors.toSet());
   }
 
   @Override

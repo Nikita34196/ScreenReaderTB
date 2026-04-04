@@ -30,6 +30,8 @@ import com.google.android.accessibility.braille.brltty.BrailleInputEvent;
 import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.utils.FeatureSupport;
 import com.google.auto.value.AutoValue;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -41,7 +43,7 @@ public class SupportedCommand {
   /** Returns an immutable and order-sensitive {@link SupportedCommand} list. */
   public static List<SupportedCommand> getAllCommands(Context context) {
     if (allCommands == null) {
-      ImmutableList.Builder<SupportedCommand> builder = ImmutableList.builder();
+      List.Builder<SupportedCommand> builder = List.builder();
       builder
           .add(
               new SupportedCommand(
@@ -1296,7 +1298,7 @@ public class SupportedCommand {
       supportedCommands =
           getAllCommands(context).stream()
               .filter(SupportedCommand::isAvailable)
-              .collect(Collectors.toUnmodifiableList());
+              .collect(Collectors.toList());
     }
     return supportedCommands;
   }

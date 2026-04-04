@@ -22,7 +22,9 @@ import com.google.android.accessibility.braille.interfaces.BrailleWord;
 import com.google.android.accessibility.braille.translate.BrailleTranslator;
 import com.google.android.accessibility.braille.translate.TranslationResult;
 import com.google.common.base.Splitter;
-import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -94,17 +96,17 @@ public class ExpandableContractedTranslator implements BrailleTranslator {
     BrailleWord beforeWordWord = beforeWordResult.cells();
     BrailleWord expandableWord = expandableWordResult.cells();
     BrailleWord afterWordWord = afterWordResult.cells();
-    ImmutableList<Integer> beforeWordTextToBraillePositions =
+    List<Integer> beforeWordTextToBraillePositions =
         beforeWordResult.textToBraillePositions();
-    ImmutableList<Integer> beforeWordBrailleToTextPositions =
+    List<Integer> beforeWordBrailleToTextPositions =
         beforeWordResult.brailleToTextPositions();
-    ImmutableList<Integer> expandableWordTextToBraillePositions =
+    List<Integer> expandableWordTextToBraillePositions =
         expandableWordResult.textToBraillePositions();
-    ImmutableList<Integer> expandableWordBrailleToTextPositions =
+    List<Integer> expandableWordBrailleToTextPositions =
         expandableWordResult.brailleToTextPositions();
-    ImmutableList<Integer> afterWordTextToBraillePositions =
+    List<Integer> afterWordTextToBraillePositions =
         afterWordResult.textToBraillePositions();
-    ImmutableList<Integer> afterWordBrailleToTextPositions =
+    List<Integer> afterWordBrailleToTextPositions =
         afterWordResult.brailleToTextPositions();
     BrailleWord all = new BrailleWord();
     all.append(beforeWordWord);

@@ -31,6 +31,8 @@ import androidx.annotation.VisibleForTesting;
 import com.google.android.accessibility.brailleime.BrailleImeLog;
 import com.google.android.accessibility.brailleime.Utils;
 import com.google.android.accessibility.brailleime.input.Swipe.Direction;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.HashMap;
@@ -180,7 +182,7 @@ class MultitouchHandler {
   List<PointF> getActivePoints() {
     return activePointers.values().stream()
         .map(pointerWithHistory -> pointerWithHistory.pointCurrent)
-        .collect(Collectors.toUnmodifiableList());
+        .collect(Collectors.toList());
   }
 
   private final Runnable tapOrSwipeRunnable =
@@ -438,7 +440,7 @@ class MultitouchHandler {
             pointerWithHistory ->
                 isAccumulationMode || recentRange.contains(pointerWithHistory.momentMadeInactive))
         .map(pointerWithHistory -> pointerWithHistory.pointCurrent)
-        .collect(Collectors.toUnmodifiableList());
+        .collect(Collectors.toList());
   }
 
   private List<PointF> getRecentlyInactivatedInitialPoints(long eventTime) {
@@ -446,7 +448,7 @@ class MultitouchHandler {
     return inactivePointers.values().stream()
         .filter(pointerWithHistory -> recentRange.contains(pointerWithHistory.momentMadeInactive))
         .map(pointerWithHistory -> pointerWithHistory.pointInitial)
-        .collect(Collectors.toUnmodifiableList());
+        .collect(Collectors.toList());
   }
 
   private List<PointerWithHistory> getRecentlyInactivatedPointsHistory(long eventTime) {
@@ -454,7 +456,7 @@ class MultitouchHandler {
     Range<Long> recentRange = new Range<>(now - RECENCY_MAX_MS, now);
     return inactivePointers.values().stream()
         .filter(pointerWithHistory -> recentRange.contains(pointerWithHistory.momentMadeInactive))
-        .collect(Collectors.toUnmodifiableList());
+        .collect(Collectors.toList());
   }
 
   private Optional<PointerWithHistory> getLastRecentlyInactivatedPointsHistory(long eventTime) {
@@ -468,7 +470,7 @@ class MultitouchHandler {
     return activePointers.values().stream()
         .filter(pointerWithHistory -> pointerWithHistory.isHoldInProgress)
         .map(pointerWithHistory -> pointerWithHistory.pointCurrent)
-        .collect(Collectors.toUnmodifiableList());
+        .collect(Collectors.toList());
   }
 
   private void transferPointerToInactive(int pointerId, long eventTime) {

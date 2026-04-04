@@ -16,7 +16,7 @@
 
 package com.google.android.accessibility.braille.brailledisplay.platform;
 
-import static com.google.common.collect.ImmutableSet.toImmutableSet;
+import java.util.stream.Collectors;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,7 +25,8 @@ import android.util.Pair;
 import com.google.android.accessibility.braille.brailledisplay.platform.connect.device.ConnectableDevice;
 import com.google.android.accessibility.braille.brailledisplay.platform.lib.SharedPreferencesStringList;
 import com.google.android.accessibility.utils.SharedPreferencesUtils;
-import com.google.common.collect.ImmutableSet;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -57,10 +58,10 @@ public final class PersistentStorage {
    * will be saved at the front of the list.
    */
   public static void addOrUpdateRememberedDevice(Context context, Pair<String, String> deviceInfo) {
-    ImmutableSet<Pair<String, String>> nameAddressSet =
+    Set<Pair<String, String>> nameAddressSet =
         getRememberedDevices(context).stream()
             .filter(pair -> pair.second.equals(deviceInfo.second))
-            .collect(toImmutableSet());
+            .collect(Collectors.toSet());
 
     if (!nameAddressSet.isEmpty()) {
       // Remove duplicate devices.
@@ -76,10 +77,10 @@ public final class PersistentStorage {
 
   /** Deletes remembered devices that match the address. */
   public static void deleteRememberedDevice(Context context, String deviceAddress) {
-    ImmutableSet<Pair<String, String>> nameAddressSet =
+    Set<Pair<String, String>> nameAddressSet =
         getRememberedDevices(context).stream()
             .filter(pair -> pair.second.equals(deviceAddress))
-            .collect(toImmutableSet());
+            .collect(Collectors.toSet());
     for (Pair<String, String> pair : nameAddressSet) {
       deleteRememberedDevice(context, pair);
     }
@@ -108,10 +109,10 @@ public final class PersistentStorage {
   public static void syncRememberedDevice(Context context, Set<ConnectableDevice> bondedDevices) {
     List<Pair<String, String>> rememberedDeviceInfos = getRememberedDevices(context);
     for (Pair<String, String> pair : rememberedDeviceInfos) {
-      ImmutableSet<ConnectableDevice> filteredBondedDevice =
+      Set<ConnectableDevice> filteredBondedDevice =
           bondedDevices.stream()
               .filter(device -> device.address().equals(pair.second))
-              .collect(toImmutableSet());
+              .collect(Collectors.toSet());
       if (filteredBondedDevice.isEmpty()) {
         deleteRememberedDevice(context, pair);
       } else {

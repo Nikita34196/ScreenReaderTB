@@ -32,6 +32,8 @@ import com.google.android.accessibility.braille.translate.BrailleTranslator;
 import com.google.android.accessibility.braille.translate.TranslationResult;
 import com.google.auto.value.AutoValue;
 import com.google.common.base.Strings;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.IOException;
@@ -292,7 +294,7 @@ abstract class AssembledResult {
               .build();
       return new AutoValue_AssembledResult(
           new SelectionRange(lowerByteIndex, upperByteIndex),
-          List.copyOf(textFieldTextClickableByteRange),
+          new ArrayList<>(textFieldTextClickableByteRange),
           holdingsClickableByteRange,
           actionClickableByteRange,
           allTranslationResult);

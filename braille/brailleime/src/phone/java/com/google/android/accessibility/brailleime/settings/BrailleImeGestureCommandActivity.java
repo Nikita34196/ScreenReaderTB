@@ -72,6 +72,8 @@ import com.google.android.accessibility.utils.PreferenceSettingsUtils;
 import com.google.android.accessibility.utils.preference.PreferencesActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.common.annotations.VisibleForTesting;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.time.Duration;
 import java.util.List;
@@ -146,7 +148,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
                     (SupportedCommand supportedCommand) ->
                         supportedCommand.getCategory() == category
                             && supportedCommand.getSubCategory() == subCategory)
-                .collect(Collectors.toUnmodifiableList());
+                .collect(Collectors.toList());
         for (SupportedCommand command : filteredCommands) {
           Preference preference = new Preference(getContext());
           preference.setTitle(command.getActionDescription(getContext()));
@@ -281,7 +283,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
             oldAction,
             gestures.isEmpty()
                 ? List.of(UNASSIGNED_GESTURE.getId())
-                : gestures.stream().map(Gesture::getId).collect(Collectors.toUnmodifiableList()));
+                : gestures.stream().map(Gesture::getId).collect(Collectors.toList()));
         updatePreferenceSummary(oldAction);
       }
     }
@@ -377,7 +379,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
           BrailleImeGestureAction.getAction(getContext(), gesture);
       return brailleImeActionList.stream()
           .filter(action -> !action.equals(brailleImeAction))
-          .collect(Collectors.toUnmodifiableList());
+          .collect(Collectors.toList());
     }
 
     private boolean closeKeyboard(Swipe swipe) {

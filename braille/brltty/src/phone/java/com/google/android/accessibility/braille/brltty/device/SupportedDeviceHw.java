@@ -3,8 +3,11 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,16 +18,16 @@ import java.util.regex.Pattern;
  * the Brailliant.
  */
 public class SupportedDeviceHw extends SupportedDevice {
-  private static final ImmutableList<Pattern> NAME_REGEXES =
-      ImmutableList.of(
+  private static final List<Pattern> NAME_REGEXES =
+      List.of(
           Pattern.compile("Brailliant B"),
           Pattern.compile("APH Mantis"),
           Pattern.compile("APH Chameleon"),
           Pattern.compile("NLS eReader H"),
           Pattern.compile("Humanware BrailleOne"),
           Pattern.compile("BrailleNote Touch"));
-  private static final ImmutableSet<Pair<Integer, Integer>> VENDOR_PROD_IDS =
-      ImmutableSet.of(
+  private static final Set<Pair<Integer, Integer>> VENDOR_PROD_IDS =
+      Set.of(
           // HumanWare [Brailliant BI 32/40, Brailliant B 80 (serial protocol)]
           new Pair<>(0X1C71, 0XC005),
           // HumanWare [Brailliant BI 14 (serial protocol)]

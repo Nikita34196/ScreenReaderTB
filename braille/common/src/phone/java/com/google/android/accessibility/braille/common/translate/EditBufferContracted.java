@@ -37,7 +37,9 @@ import com.google.android.accessibility.braille.interfaces.BrailleDisplayForBrai
 import com.google.android.accessibility.braille.interfaces.BrailleWord;
 import com.google.android.accessibility.braille.translate.BrailleTranslator;
 import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
@@ -149,7 +151,7 @@ public abstract class EditBufferContracted implements EditBuffer {
   public void deleteWord(ImeConnection imeConnection) {
     // If there is any holdings left, clear it out; otherwise delete at the Editor level.
     if (!holdings.isEmpty()) {
-      ImmutableList.Builder<String> holdingsStringBuilder = ImmutableList.builder();
+      List.Builder<String> holdingsStringBuilder = List.builder();
       for (int i = 0; i < holdings.size(); i++) {
         holdingsStringBuilder.add(getAnnouncement(context.getResources(), translator, holdings, i));
       }

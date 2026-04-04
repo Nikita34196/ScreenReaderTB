@@ -36,7 +36,9 @@ import com.google.android.accessibility.brailleime.Utils;
 import com.google.android.accessibility.brailleime.analytics.BrailleImeAnalytics;
 import com.google.android.accessibility.brailleime.analytics.BrailleImeAnalytics.ContextMenuSelections;
 import com.google.android.accessibility.utils.material.MaterialComponentUtils;
-import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,8 +70,8 @@ public class ContextMenuDialog extends ViewAttachedDialog {
   private boolean tutorialMode;
 
   // LINT.IfChange(menu_options)
-  public static final ImmutableList<Integer> ITEM_STRING_IDS =
-      ImmutableList.of(
+  public static final List<Integer> ITEM_STRING_IDS =
+      List.of(
           R.string.context_menu_input_language_selection,
           R.string.context_menu_switch_contracted_status_selection,
           R.string.context_menu_layout_calibration,

@@ -26,7 +26,9 @@ import com.google.android.accessibility.utils.AccessibilityNodeInfoUtils;
 import com.google.android.accessibility.utils.AccessibilityNodeInfoUtils.SpellingSuggestion;
 import com.google.android.accessibility.utils.FocusFinder;
 import com.google.android.accessibility.utils.FocusFinder.FocusType;
-import com.google.common.collect.ImmutableList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Arrays;
 
@@ -126,11 +128,11 @@ public class BrailleTypoFinder {
   }
 
   /** Gets the suggestion candidates. */
-  public ImmutableList<String> getSuggestionCandidates() throws NoTypoFocusFoundException {
+  public List<String> getSuggestionCandidates() throws NoTypoFocusFoundException {
     if (suggestionCandidates == null) {
       throw new NoTypoFocusFoundException();
     }
-    return ImmutableList.copyOf(Arrays.asList(suggestionCandidates));
+    return new ArrayList<>(Arrays.asList(suggestionCandidates));
   }
 
   /**
@@ -157,7 +159,7 @@ public class BrailleTypoFinder {
     if (node == null) {
       return false;
     }
-    ImmutableList<SpellingSuggestion> spellingSuggestions =
+    List<SpellingSuggestion> spellingSuggestions =
         AccessibilityNodeInfoUtils.getSpellingSuggestions(context, node);
     if (spellingSuggestions.isEmpty()) {
       return false;

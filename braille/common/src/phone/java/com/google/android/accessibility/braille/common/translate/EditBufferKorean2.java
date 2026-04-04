@@ -68,7 +68,8 @@ import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.braille.interfaces.BrailleWord;
 import com.google.android.accessibility.braille.translate.BrailleTranslator;
 import com.google.android.accessibility.braille.translate.TranslationResult;
-import com.google.common.collect.ImmutableMap;
+import java.util.HashMap;
+import java.util.Map;
 import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.Map;
@@ -78,8 +79,8 @@ import java.util.Objects;
 public class EditBufferKorean2 extends EditBufferContracted {
   private static final HashMap<String, String> previousResultMap = new HashMap<>();
   private static final String TAG = "EditBufferKorean2";
-  private static final ImmutableMap<String, String> ABBREVIATION_VOWELS =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> ABBREVIATION_VOWELS =
+      Map.<String, String>builder()
           .put("1456", "ᅥᆨ")
           .put("23456", "ᅥᆫ")
           .put("2345", "ᅥᆯ")
@@ -95,8 +96,8 @@ public class EditBufferKorean2 extends EditBufferContracted {
           .put("2346", "ᅳᆯ")
           .put("12345", "ᅵᆫ")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> COMBINE_FINAL_MAP =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> COMBINE_FINAL_MAP =
+      Map.<String, String>builder()
           .put("ᆨᆨ", "ᆩ")
           .put("ᆨᆺ", "ᆪ")
           .put("ᆫᆽ", "ᆬ")
@@ -109,8 +110,8 @@ public class EditBufferKorean2 extends EditBufferContracted {
           .put("ᆯᇁ", "ᆵ")
           .put("ᆯᇂ", "ᆶ")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> SPECIAL_ABBREVIATION_VOWELS =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> SPECIAL_ABBREVIATION_VOWELS =
+      Map.<String, String>builder()
           .put("1456", "억")
           .put("23456", "언")
           .put("2345", "얼")
@@ -126,15 +127,15 @@ public class EditBufferKorean2 extends EditBufferContracted {
           .put("2346", "을")
           .put("12345", "인")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> SPECIAL_ABBREVIATION_CHARS =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> SPECIAL_ABBREVIATION_CHARS =
+      Map.<String, String>builder()
           .put("1246", "가")
           .put("123", "사")
           .put("6-1246", "까")
           .put("6-123", "싸")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> ABBREVIATION_CHARACTERS =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> ABBREVIATION_CHARACTERS =
+      Map.<String, String>builder()
           .put("14", "나")
           .put("24", "다")
           .put("15", "마")
@@ -145,8 +146,8 @@ public class EditBufferKorean2 extends EditBufferContracted {
           .put("145", "파")
           .put("245", "하")
           .buildOrThrow();
-  private static final ImmutableMap<String, String> ABBREVIATION_WORD =
-      ImmutableMap.<String, String>builder()
+  private static final Map<String, String> ABBREVIATION_WORD =
+      Map.<String, String>builder()
           .put("456-234", "것")
           .put("1-234", "그래서")
           .put("1-14", "그러나")
