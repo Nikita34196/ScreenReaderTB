@@ -25,43 +25,42 @@ import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.braille.translate.BrailleTranslator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map;
 
 /** An EditBuffer for Danish Braille Grade 2. */
 public class EditBufferDanish2 extends EditBufferContracted {
 
-  private static final Map<String, String> INITIAL_MAP =
-      new HashMap<>()
-          .put("1", "a")
-          .put("12", "b")
-          .put("14", "c")
-          .put("145", "d")
-          .put("15", "e")
-          .put("124", "f")
-          .put("1245", "g")
-          .put("125", "h")
-          .put("24", "i")
-          .put("245", "j")
-          .put("13", "k")
-          .put("123", "l")
-          .put("134", "m")
-          .put("1345", "n")
-          .put("135", "o")
-          .put("1234", "p")
-          .put("12345", "q")
-          .put("1235", "r")
-          .put("234", "s")
-          .put("2345", "t")
-          .put("136", "u")
-          .put("1236", "v")
-          .put("2456", "w")
-          .put("1346", "x")
-          .put("13456", "y")
-          .put("1356", "z")
-          .put("345", "æ")
-          .put("246", "ø")
-          .put("16", "å")
-          ;
+  private static final Map<String, String> INITIAL_MAP = new HashMap<>();
+  static {
+      INITIAL_MAP.put("1", "a");
+      INITIAL_MAP.put("12", "b");
+      INITIAL_MAP.put("14", "c");
+      INITIAL_MAP.put("145", "d");
+      INITIAL_MAP.put("15", "e");
+      INITIAL_MAP.put("124", "f");
+      INITIAL_MAP.put("1245", "g");
+      INITIAL_MAP.put("125", "h");
+      INITIAL_MAP.put("24", "i");
+      INITIAL_MAP.put("245", "j");
+      INITIAL_MAP.put("13", "k");
+      INITIAL_MAP.put("123", "l");
+      INITIAL_MAP.put("134", "m");
+      INITIAL_MAP.put("1345", "n");
+      INITIAL_MAP.put("135", "o");
+      INITIAL_MAP.put("1234", "p");
+      INITIAL_MAP.put("12345", "q");
+      INITIAL_MAP.put("1235", "r");
+      INITIAL_MAP.put("234", "s");
+      INITIAL_MAP.put("2345", "t");
+      INITIAL_MAP.put("136", "u");
+      INITIAL_MAP.put("1236", "v");
+      INITIAL_MAP.put("2456", "w");
+      INITIAL_MAP.put("1346", "x");
+      INITIAL_MAP.put("13456", "y");
+      INITIAL_MAP.put("1356", "z");
+      INITIAL_MAP.put("345", "æ");
+      INITIAL_MAP.put("246", "ø");
+      INITIAL_MAP.put("16", "å");
+  }
 
   public EditBufferDanish2(
       Context context, BrailleTranslator translator, TalkBackSpeaker talkBack) {

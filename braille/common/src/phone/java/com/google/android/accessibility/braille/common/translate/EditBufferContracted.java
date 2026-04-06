@@ -150,7 +150,7 @@ public abstract class EditBufferContracted implements EditBuffer {
   public void deleteWord(ImeConnection imeConnection) {
     // If there is any holdings left, clear it out; otherwise delete at the Editor level.
     if (!holdings.isEmpty()) {
-      List.Builder<String> holdingsStringBuilder = List.builder();
+      ArrayList<String> holdingsStringBuilder = new ArrayList<>();
       for (int i = 0; i < holdings.size(); i++) {
         holdingsStringBuilder.add(getAnnouncement(context.getResources(), translator, holdings, i));
       }
