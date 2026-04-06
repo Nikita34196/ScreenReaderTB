@@ -32,7 +32,6 @@ import com.google.android.accessibility.utils.FeatureSupport;
 import com.google.auto.value.AutoValue;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -51,59 +50,59 @@ public class SupportedCommand {
                   BrailleInputEvent.CMD_NAV_PAN_DOWN,
                   R.string.bd_cmd_nav_pan_down,
                   Category.BASIC,
-                  KeyDescriptor.builder().setKeyNameRes(R.string.bd_key_pan_down)))
+                  KeyDescriptor.builder().setKeyNameRes(R.string.bd_key_pan_down).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_PAN_UP,
                   R.string.bd_cmd_nav_pan_up,
                   Category.BASIC,
-                  KeyDescriptor.builder().setKeyNameRes(R.string.bd_key_pan_up)))
+                  KeyDescriptor.builder().setKeyNameRes(R.string.bd_key_pan_up).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_ROUTE,
                   R.string.bd_cmd_route,
                   Category.BASIC,
-                  KeyDescriptor.builder().setKeyNameRes(R.string.bd_key_route)))
+                  KeyDescriptor.builder().setKeyNameRes(R.string.bd_key_route).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_KEY_ENTER,
                   R.string.bd_cmd_activate_current,
                   Category.BASIC,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_LONG_PRESS_CURRENT,
                   R.string.bd_cmd_touch_and_hold_current,
                   Category.BASIC,
-                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(8))))
+                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_ITEM_PREVIOUS,
                   R.string.bd_cmd_nav_item_previous,
                   Category.NAVIGATION,
                   Subcategory.BASIC,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 7))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 7)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_ITEM_NEXT,
                   R.string.bd_cmd_nav_item_next,
                   Category.NAVIGATION,
                   Subcategory.BASIC,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(4, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(4, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SCROLL_BACKWARD,
                   R.string.bd_cmd_scroll_backward,
                   Category.NAVIGATION,
                   Subcategory.BASIC,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 4, 6, 7))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 4, 6, 7)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SCROLL_FORWARD,
                   R.string.bd_cmd_scroll_forward,
                   Category.NAVIGATION,
                   Subcategory.BASIC,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 3, 5, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 3, 5, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent
@@ -111,7 +110,7 @@ public class SupportedCommand {
                   R.string.bd_cmd_move_by_reading_granularity_or_adjust_reading_control_backward,
                   Category.NAVIGATION,
                   Subcategory.BASIC,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(3, 7))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(3, 7)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent
@@ -119,7 +118,7 @@ public class SupportedCommand {
                   R.string.bd_cmd_move_by_reading_granularity_or_adjust_reading_control_forward,
                   Category.NAVIGATION,
                   Subcategory.BASIC,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(6, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(6, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_TOGGLE_AUTO_SCROLL,
@@ -129,35 +128,35 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 4, 5, 6))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_INCREASE_AUTO_SCROLL_DURATION,
                   R.string.bd_cmd_increase_auto_scroll_duration,
                   Category.NAVIGATION,
                   Subcategory.AUTO_SCROLL,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(4))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(4)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_DECREASE_AUTO_SCROLL_DURATION,
                   R.string.bd_cmd_decrease_auto_scroll_duration,
                   Category.NAVIGATION,
                   Subcategory.AUTO_SCROLL,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(1))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(1)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_WINDOW_PREVIOUS,
                   R.string.bd_cmd_nav_window_previous,
                   Category.NAVIGATION,
                   Subcategory.WINDOW,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 4, 5, 6, 7))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 4, 5, 6, 7)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_WINDOW_NEXT,
                   R.string.bd_cmd_nav_window_next,
                   Category.NAVIGATION,
                   Subcategory.WINDOW,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 4, 5, 6, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 4, 5, 6, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_TOP,
@@ -167,7 +166,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 3))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_BOTTOM,
@@ -177,21 +176,21 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(4, 5, 6))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_PREVIOUS_READING_CONTROL,
                   R.string.bd_cmd_previous_reading_control,
                   Category.NAVIGATION,
                   Subcategory.READING_CONTROLS,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 3, 7, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 3, 7, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NEXT_READING_CONTROL,
                   R.string.bd_cmd_next_reading_control,
                   Category.NAVIGATION,
                   Subcategory.READING_CONTROLS,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(5, 6, 7, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(5, 6, 7, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_CAPTION_ENTER_OR_EXIT,
@@ -201,7 +200,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 4, 7, 8))
-                      ,
+                      .build(),
                   FeatureFlagReader.useShowCaptions(context)))
           .add(
               new SupportedCommand(
@@ -212,7 +211,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(4, 5, 6))
-                      ,
+                      .build(),
                   FeatureFlagReader.useShowCaptions(context)))
           .add(
               new SupportedCommand(
@@ -222,7 +221,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_GLOBAL_HOME,
@@ -231,7 +230,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 5))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_GLOBAL_NOTIFICATIONS,
@@ -240,7 +239,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 3, 4, 5))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_GLOBAL_RECENTS,
@@ -249,7 +248,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 3, 5))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_QUICK_SETTINGS,
@@ -258,7 +257,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 3, 4, 5))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_ALL_APPS,
@@ -267,7 +266,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 3, 4))
-                      ,
+                      .build(),
                   FeatureSupport.supportGetSystemActions(context)))
           .add(
               new SupportedCommand(
@@ -277,7 +276,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(3, 4))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_EDIT_CUSTOM_LABEL,
@@ -286,7 +285,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 3, 4, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_OPEN_TALKBACK_MENU,
@@ -295,25 +294,25 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 3, 4))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_TOGGLE_VOICE_FEEDBACK,
                   R.string.bd_cmd_toggle_voice_feedback,
                   Category.TALKBACK_FEATURES,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 3, 4, 7, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 3, 4, 7, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_STOP_READING,
                   R.string.bd_cmd_read_stop,
                   Category.TALKBACK_FEATURES,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(7, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(7, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_TALKBACK_SETTINGS,
                   R.string.bd_cmd_talkback_settings,
                   Category.TALKBACK_FEATURES,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 3, 4, 5, 7, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 3, 4, 5, 7, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_PLAY_PAUSE_MEDIA,
@@ -322,20 +321,20 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(7, 8))
-                      ,
+                      .build(),
                   FeatureSupport.supportGetSystemActions(context)))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SWITCH_TO_NEXT_INPUT_LANGUAGE,
                   R.string.bd_cmd_switch_to_next_input_language,
                   Category.BRAILLE_SETTINGS,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 4, 7, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(2, 4, 7, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SWITCH_TO_NEXT_OUTPUT_LANGUAGE,
                   R.string.bd_cmd_switch_to_next_output_language,
                   Category.BRAILLE_SETTINGS,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 3, 5, 7, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 3, 5, 7, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_TOGGLE_BRAILLE_GRADE,
@@ -344,19 +343,19 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 4, 5))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_HELP,
                   R.string.bd_cmd_help,
                   Category.BRAILLE_SETTINGS,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 3, 7, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 3, 7, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_BRAILLE_DISPLAY_SETTINGS,
                   R.string.bd_cmd_braille_display_settings,
                   Category.BRAILLE_SETTINGS,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 2, 7, 8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(1, 2, 7, 8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_TURN_OFF_BRAILLE_DISPLAY,
@@ -364,7 +363,7 @@ public class SupportedCommand {
                   Category.BRAILLE_SETTINGS,
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3, 4, 5, 6, 7, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NEXT_INPUT_METHOD,
@@ -374,49 +373,49 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 3, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_CHARACTER_PREVIOUS,
                   R.string.bd_cmd_nav_character_previous,
                   Category.EDITING,
                   Subcategory.MOVE_CURSOR,
-                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(3))))
+                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(3)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_CHARACTER_NEXT,
                   R.string.bd_cmd_nav_character_next,
                   Category.EDITING,
                   Subcategory.MOVE_CURSOR,
-                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(6))))
+                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(6)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_WORD_PREVIOUS,
                   R.string.bd_cmd_nav_word_previous,
                   Category.EDITING,
                   Subcategory.MOVE_CURSOR,
-                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(2))))
+                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(2)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_WORD_NEXT,
                   R.string.bd_cmd_nav_word_next,
                   Category.EDITING,
                   Subcategory.MOVE_CURSOR,
-                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(5))))
+                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(5)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_LINE_PREVIOUS,
                   R.string.bd_cmd_nav_line_previous,
                   Category.EDITING,
                   Subcategory.MOVE_CURSOR,
-                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(1))))
+                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(1)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_NAV_LINE_NEXT,
                   R.string.bd_cmd_nav_line_next,
                   Category.EDITING,
                   Subcategory.MOVE_CURSOR,
-                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(4))))
+                  KeyDescriptor.builder().setSpace(true).setDots(new BrailleCharacter(4)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SELECTION_SELECT_ALL,
@@ -426,7 +425,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 3, 4, 5, 6, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SELECTION_SELECT_CURRENT_TO_START,
@@ -436,7 +435,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 3, 7, 8))
-                      ,
+                      .build(),
                   FeatureFlagReader.useSelectCurrentToStartOrEnd(context)))
           .add(
               new SupportedCommand(
@@ -447,7 +446,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(4, 5, 6, 7, 8))
-                      ,
+                      .build(),
                   FeatureFlagReader.useSelectCurrentToStartOrEnd(context)))
           .add(
               new SupportedCommand(
@@ -458,7 +457,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(3, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SELECT_NEXT_CHARACTER,
@@ -468,7 +467,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(6, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SELECT_PREVIOUS_WORD,
@@ -478,7 +477,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(2, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SELECT_NEXT_WORD,
@@ -488,7 +487,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(5, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SELECT_PREVIOUS_LINE,
@@ -498,7 +497,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 8))
-                      ,
+                      .build(),
                   // TODO: As the text selection for line granularity movement does not
                   // work, we mask off the action of selecting text by line.
                   /* available= */ false))
@@ -511,7 +510,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(4, 8))
-                      ,
+                      .build(),
                   // TODO: As the text selection for line granularity movement does not
                   // work, we mask off the action of selecting text by line.
                   /* available= */ false))
@@ -524,7 +523,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 4, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SELECTION_CUT,
@@ -534,7 +533,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 3, 4, 6, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SELECTION_PASTE,
@@ -544,14 +543,14 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 2, 3, 6, 8))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_KEY_DEL,
                   R.string.bd_cmd_key_del,
                   Category.EDITING,
                   Subcategory.EDIT,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(7))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(7)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_DEL_WORD,
@@ -561,14 +560,14 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(2, 7))
-                      ))
+                      .build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_KEY_ENTER,
                   R.string.bd_cmd_key_enter,
                   Category.EDITING,
                   Subcategory.EDIT,
-                  KeyDescriptor.builder().setDots(new BrailleCharacter(8))))
+                  KeyDescriptor.builder().setDots(new BrailleCharacter(8)).build()))
           .add(
               new SupportedCommand(
                   BrailleInputEvent.CMD_SHOW_POPUP_MESSAGE_HISTORY,
@@ -577,7 +576,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 3, 4, 5, 7, 8))
-                      ,
+                      .build(),
                   FeatureFlagReader.usePopupMessage(context)))
           .add(
               new SupportedCommand(
@@ -588,7 +587,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 3, 4, 6))
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -596,7 +595,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 4, 5, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_landmark_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -607,7 +606,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 4, 5))
                       .setKeyNameRes(R.string.bd_cmd_next_landmark_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -618,7 +617,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 4, 5, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_landmark_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -626,7 +625,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 4, 5, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_graphic_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -637,7 +636,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 4, 5))
                       .setKeyNameRes(R.string.bd_cmd_next_graphic_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -648,7 +647,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 4, 5, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_graphic_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -656,7 +655,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_list_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -667,7 +666,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3))
                       .setKeyNameRes(R.string.bd_cmd_next_list_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -678,7 +677,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_list_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -686,7 +685,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 4, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_list_item_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -697,7 +696,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 4))
                       .setKeyNameRes(R.string.bd_cmd_next_list_item_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -708,7 +707,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 4, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_list_item_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -716,7 +715,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 3, 4, 5, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_table_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -727,7 +726,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 3, 4, 5))
                       .setKeyNameRes(R.string.bd_cmd_next_table_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -738,7 +737,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 3, 4, 5, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_table_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -746,7 +745,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 5, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -757,7 +756,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 5))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -768,7 +767,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 5, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_heading_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -776,7 +775,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_1_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -789,7 +788,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_1_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -802,7 +801,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_heading_1_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -810,7 +809,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 3, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_2_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -823,7 +822,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 3))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_2_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -836,7 +835,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 3, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_heading_2_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -844,7 +843,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 5, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_3_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -857,7 +856,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 5))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_3_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -870,7 +869,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 5, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_heading_3_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -878,7 +877,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 5, 6, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_4_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -891,7 +890,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 5, 6))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_4_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -904,7 +903,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 5, 6, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_heading_4_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -912,7 +911,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 6, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_5_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -925,7 +924,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 6))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_5_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -938,7 +937,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 6, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_heading_5_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -946,7 +945,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 3, 5, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_6_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -959,7 +958,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 3, 5))
                       .setKeyNameRes(R.string.bd_cmd_next_heading_6_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -972,7 +971,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(2, 3, 5, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_heading_6_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -980,7 +979,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 4, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_control_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -991,7 +990,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 4))
                       .setKeyNameRes(R.string.bd_cmd_next_control_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1002,7 +1001,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 4, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_control_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1010,7 +1009,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_button_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1021,7 +1020,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2))
                       .setKeyNameRes(R.string.bd_cmd_next_button_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1032,7 +1031,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_button_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1040,7 +1039,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 3, 4, 6, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_checkbox_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1051,7 +1050,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 3, 4, 6))
                       .setKeyNameRes(R.string.bd_cmd_next_checkbox_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1062,7 +1061,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 3, 4, 6, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_checkbox_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1070,7 +1069,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3, 5, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_radio_button_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1081,7 +1080,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3, 5))
                       .setKeyNameRes(R.string.bd_cmd_next_radio_button_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1092,7 +1091,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3, 5, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_radio_button_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1100,7 +1099,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 4, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_combo_box_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1111,7 +1110,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 4))
                       .setKeyNameRes(R.string.bd_cmd_next_combo_box_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1122,7 +1121,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 4, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_combo_box_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1130,7 +1129,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 5, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_edit_field_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1141,7 +1140,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 5))
                       .setKeyNameRes(R.string.bd_cmd_next_edit_field_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1152,7 +1151,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 5, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_edit_field_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1160,7 +1159,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 3, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_link_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1171,7 +1170,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 3))
                       .setKeyNameRes(R.string.bd_cmd_next_link_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1182,7 +1181,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 3, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_link_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1190,7 +1189,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3, 6, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_visited_link_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1201,7 +1200,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3, 6))
                       .setKeyNameRes(R.string.bd_cmd_next_visited_link_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1212,7 +1211,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 2, 3, 6, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_visited_link_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1220,7 +1219,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 3, 6, 8))
                       .setKeyNameRes(R.string.bd_cmd_next_unvisited_link_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1231,7 +1230,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 3, 6))
                       .setKeyNameRes(R.string.bd_cmd_next_unvisited_link_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1242,7 +1241,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setDots(new BrailleCharacter(1, 3, 6, 7))
                       .setKeyNameRes(R.string.bd_cmd_previous_unvisited_link_key)
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1253,7 +1252,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(5, 7, 8))
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1264,7 +1263,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(2, 7, 8))
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1275,7 +1274,7 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(4, 7, 8))
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)))
           .add(
               new SupportedCommand(
@@ -1286,9 +1285,9 @@ public class SupportedCommand {
                   KeyDescriptor.builder()
                       .setSpace(true)
                       .setDots(new BrailleCharacter(1, 7, 8))
-                      ,
+                      .build(),
                   FeatureFlagReader.useBrowseMode(context)));
-      allCommands = builder;
+      allCommands = builder.build();
     }
     return allCommands;
   }

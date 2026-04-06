@@ -34,7 +34,6 @@ import com.google.auto.value.AutoValue;
 import com.google.common.base.Strings;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.IOException;
@@ -292,7 +291,7 @@ abstract class AssembledResult {
               .setTextToBraillePositions(textToBraillePositions)
               .setBrailleToTextPositions(brailleToTextPositions)
               .setCursorBytePosition(lowerByteIndex)
-              ;
+              .build();
       return new AutoValue_AssembledResult(
           new SelectionRange(lowerByteIndex, upperByteIndex),
           new ArrayList<>(textFieldTextClickableByteRange),

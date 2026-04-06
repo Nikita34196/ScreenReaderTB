@@ -38,7 +38,6 @@ import com.google.android.accessibility.braille.interfaces.SelectionRange;
 import com.google.android.accessibility.braille.translate.TranslationResult;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.nio.ByteBuffer;
@@ -269,7 +268,7 @@ public class ContentHelper {
             stream(trimmedBrailleToTextPositions).boxed().collect(Collectors.toList()))
         .setBlink(!displayedBraille.equals(displayedOverlaidBraille))
         .setSource(source)
-        ;
+        .build();
   }
 
   /**

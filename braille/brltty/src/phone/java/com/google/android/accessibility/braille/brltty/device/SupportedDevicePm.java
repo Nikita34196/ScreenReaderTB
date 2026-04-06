@@ -5,7 +5,6 @@ import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
@@ -51,7 +50,7 @@ public class SupportedDevicePm extends SupportedDevice {
         .add("LeftKeyFront", R.string.key_braillex_LeftKeyFront)
         .add("RightKeyRear", R.string.key_braillex_RightKeyRear)
         .add("RightKeyFront", R.string.key_braillex_RightKeyFront)
-        ;
+        .build();
   }
 
   @Override

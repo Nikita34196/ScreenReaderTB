@@ -28,7 +28,6 @@ import com.google.android.accessibility.utils.FocusFinder;
 import com.google.android.accessibility.utils.FocusFinder.FocusType;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.Arrays;

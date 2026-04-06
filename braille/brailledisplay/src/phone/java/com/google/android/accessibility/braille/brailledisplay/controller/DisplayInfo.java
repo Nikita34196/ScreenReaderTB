@@ -19,7 +19,6 @@ package com.google.android.accessibility.braille.brailledisplay.controller;
 import com.google.auto.value.AutoValue;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.nio.ByteBuffer;
 import java.util.List;

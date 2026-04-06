@@ -39,7 +39,6 @@ import com.google.android.accessibility.braille.brltty.device.SupportedDeviceSkD
 import com.google.android.accessibility.braille.brltty.device.SupportedDeviceVo;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /** Helper class maps device name patterns to device-related data. */

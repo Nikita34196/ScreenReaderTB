@@ -61,7 +61,6 @@ import com.google.android.accessibility.brailleime.input.Swipe.Direction;
 import com.google.android.accessibility.brailleime.input.UnassignedGesture;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -81,7 +80,7 @@ public final class BrailleImeGestureAction {
   // We assume users are right-handed by default, meaning they would hold the dots with their left
   // fingers and swipe with their right.
   private static final Map<BrailleImeAction, Gesture> DEFAULT_ACTION_GESTURE =
-      new HashMap<>()
+      Map.<BrailleImeAction, Gesture>builder()
           .put(MOVE_CURSOR_BACKWARD, new Swipe(Direction.UP, /* touchCount= */ 1))
           .put(MOVE_CURSOR_FORWARD, new Swipe(Direction.DOWN, /* touchCount= */ 1))
           .put(ADD_SPACE_OR_NEXT_ITEM, new Swipe(Direction.RIGHT, /* touchCount= */ 1))
@@ -258,7 +257,7 @@ public final class BrailleImeGestureAction {
         gesturesBuilder.add(gesture);
       }
     }
-    return gesturesBuilder;
+    return gesturesBuilder.build();
   }
 
   /** Returns the gesture of the given action or null if no match exists. */
@@ -354,7 +353,7 @@ public final class BrailleImeGestureAction {
     if (!defaultGesture.equals(defaultGesture.mirrorDots())) {
       gesturesBuilder.add(defaultGesture.mirrorDots());
     }
-    return gesturesBuilder;
+    return gesturesBuilder.build();
   }
 
   private BrailleImeGestureAction() {}

@@ -73,7 +73,6 @@ import com.google.android.accessibility.utils.PreferenceSettingsUtils;
 import com.google.android.accessibility.utils.material.MaterialComponentUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -546,7 +545,7 @@ import androidx.preference.PreferenceFragmentCompat;
             isConnecting,
             isConnected,
             /* isAvailable= */ false,
-            ConnectableBluetoothDevice.builder().setBluetoothDevice(device));
+            ConnectableBluetoothDevice.builder().setBluetoothDevice(device).build());
       }
     }
     return null;

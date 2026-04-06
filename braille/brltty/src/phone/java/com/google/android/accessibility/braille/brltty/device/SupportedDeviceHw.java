@@ -5,7 +5,6 @@ import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
@@ -76,7 +75,7 @@ public class SupportedDeviceHw extends SupportedDevice {
         .add("Thumb2", R.string.key_brailliant_Thumb2)
         .add("Thumb3", R.string.key_brailliant_Thumb3)
         .add("Thumb4", R.string.key_brailliant_Thumb4)
-        ;
+        .build();
   }
 
   @Override

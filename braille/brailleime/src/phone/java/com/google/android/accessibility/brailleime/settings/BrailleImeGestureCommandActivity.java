@@ -74,7 +74,6 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.common.annotations.VisibleForTesting;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.time.Duration;
 import java.util.List;

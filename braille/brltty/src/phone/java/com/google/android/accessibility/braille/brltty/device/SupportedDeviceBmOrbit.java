@@ -5,7 +5,6 @@ import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
@@ -50,7 +49,7 @@ public class SupportedDeviceBmOrbit extends SupportedDevice {
         .add("Display2", R.string.key_APH_AdvanceLeft)
         .add("Display5", R.string.key_APH_AdvanceRight)
         .add("Space", R.string.key_Space)
-        ;
+        .build();
   }
 
   @Override

@@ -24,7 +24,6 @@ import com.google.android.apps.common.proguard.UsedByNative;
 import com.google.auto.value.AutoValue;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -123,7 +122,7 @@ public abstract class TranslationResult {
         .setTextToBraillePositions(map)
         .setBrailleToTextPositions(map)
         .setCursorBytePosition(cursorPosition)
-        ;
+        .build();
   }
 
   /** Corrects translation of text starts from {@code textStart} to {@code textEnd}. */
@@ -174,7 +173,7 @@ public abstract class TranslationResult {
         .setTextToBraillePositions(textToBraillePositions)
         .setBrailleToTextPositions(brailleToTextPositions)
         .setCursorBytePosition(incorrectResult.cursorBytePosition())
-        ;
+        .build();
   }
 
   /** Extends translation result by one empty cell. */
@@ -190,6 +189,6 @@ public abstract class TranslationResult {
         .setTextToBraillePositions(brailleToText)
         .setBrailleToTextPositions(textToBraille)
         .setCursorBytePosition(result.cursorBytePosition())
-        ;
+        .build();
   }
 }

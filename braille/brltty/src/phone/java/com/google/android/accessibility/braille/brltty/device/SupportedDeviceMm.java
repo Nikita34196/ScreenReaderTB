@@ -5,7 +5,6 @@ import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,7 +30,7 @@ public class SupportedDeviceMm extends SupportedDevice {
 
   @Override
   public Map<String, Integer> friendlyKeyNames() {
-    return new KeyNameMapBuilder().dots8().routing().add("Space", R.string.key_Space);
+    return new KeyNameMapBuilder().dots8().routing().add("Space", R.string.key_Space).build();
   }
 
   @Override

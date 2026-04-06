@@ -5,7 +5,6 @@ import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
@@ -42,7 +41,7 @@ public class SupportedDeviceSkDisplay extends SupportedDevice {
         .add("K7", R.string.key_skbdp_RightRockerRight)
         .add("RoutingKey2", R.string.key_Routing)
         .routing()
-        ;
+        .build();
   }
 
   @Override

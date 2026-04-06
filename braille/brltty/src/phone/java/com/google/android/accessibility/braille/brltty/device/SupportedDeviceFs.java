@@ -5,7 +5,6 @@ import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
@@ -61,7 +60,7 @@ public class SupportedDeviceFs extends SupportedDevice {
         .add("LeftRockerDown", R.string.key_focus_LeftRockerDown)
         .add("RightRockerUp", R.string.key_focus_RightRockerUp)
         .add("RightRockerDown", R.string.key_focus_RightRockerDown)
-        ;
+        .build();
   }
 
   @Override

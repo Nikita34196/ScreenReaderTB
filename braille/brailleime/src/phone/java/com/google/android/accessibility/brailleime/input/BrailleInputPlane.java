@@ -47,7 +47,6 @@ import com.google.android.accessibility.brailleime.input.MultitouchHandler.HoldR
 import com.google.android.accessibility.brailleime.input.MultitouchHandler.MultitouchResultListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
@@ -82,7 +81,7 @@ public abstract class BrailleInputPlane {
   private static final int CALIBRATION_MAXIMUM_FAIL_COUNT = 3;
 
   private static final Map<InputDotType, int[]> dotNumberOrderMap =
-      new HashMap<>()
+      Map.<InputDotType, int[]>builder()
           .put(InputDotType.SCREEN_AWAY, new int[] {1, 2, 3, 4, 5, 6})
           .put(InputDotType.SCREEN_AWAY_EIGHT_DOT, new int[] {1, 2, 3, 7, 4, 5, 6, 8})
           .put(InputDotType.TABLE_TOP, new int[] {3, 2, 1, 4, 5, 6})

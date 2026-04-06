@@ -5,7 +5,6 @@ import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
@@ -43,7 +42,7 @@ public class SupportedDeviceVo extends SupportedDevice {
         .add("JoystickEnter", R.string.key_JoystickCenter)
         .add("ScrollLeft", R.string.key_BP_ScrollLeft)
         .add("ScrollRight", R.string.key_BP_ScrollRight)
-        ;
+        .build();
   }
 
   @Override

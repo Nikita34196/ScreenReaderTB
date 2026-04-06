@@ -35,7 +35,6 @@ import com.google.android.accessibility.utils.AccessibilityNodeInfoUtils.Spellin
 import com.google.android.accessibility.utils.FocusFinder;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
@@ -200,7 +199,7 @@ public class TypoHandler {
         .append(SEPARATOR_PERIOD)
         .append(type)
         .append(SEPARATOR_PERIOD)
-        .append(SPACE, new TtsSpan.VerbatimBuilder(suggestion), 0)
+        .append(SPACE, new TtsSpan.VerbatimBuilder(suggestion).build(), 0)
         .append(SEPARATOR_PERIOD)
         .append(indexSting);
   }

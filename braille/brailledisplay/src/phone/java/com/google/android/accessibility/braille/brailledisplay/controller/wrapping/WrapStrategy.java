@@ -21,7 +21,6 @@ import android.util.SparseIntArray;
 import com.google.android.accessibility.braille.translate.TranslationResult;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**

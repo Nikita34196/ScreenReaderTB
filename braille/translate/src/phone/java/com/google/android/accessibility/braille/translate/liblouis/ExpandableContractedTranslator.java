@@ -24,7 +24,6 @@ import com.google.android.accessibility.braille.translate.TranslationResult;
 import com.google.common.base.Splitter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
@@ -153,7 +152,7 @@ public class ExpandableContractedTranslator implements BrailleTranslator {
         .setTextToBraillePositions(textToBraille)
         .setBrailleToTextPositions(brailleToText)
         .setCursorBytePosition(cursorPosition)
-        ;
+        .build();
   }
 
   @Override
