@@ -16,35 +16,15 @@
 
 package com.google.android.accessibility.braille.brltty;
 
-import static com.google.android.accessibility.utils.BuildVersionUtils.isRobolectric;
-
 import android.content.Context;
-import android.os.SystemClock;
-import android.util.Log;
-import androidx.annotation.VisibleForTesting;
-import androidx.core.content.ContextCompat;
-import com.google.android.accessibility.braille.translate.TableLoader;
-import com.google.android.accessibility.braille.translate.liblouis.TranslateUtils;
-import com.google.android.accessibility.utils.BuildVersionUtils;
-import com.google.android.apps.common.proguard.UsedByNative;
-import java.util.HashMap;
-import java.util.Map;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
-/** Handles the encoding of braille display packets by delegating to BRLTTY. */
-public class BrlttyEncoder implements Encoder, TableLoader {
+/** Stub Brltty encoder. */
+public class BrlttyEncoder implements Encoder {
 
-  /** A factory for Brltty. */
+  /** Stub brltty factory. */
   public static class BrlttyFactory implements Factory {
 
     @Override
@@ -53,226 +33,35 @@ public class BrlttyEncoder implements Encoder, TableLoader {
     }
   }
 
-  private static final String TAG = "BrlttyEncoder";
-  private static final float START_TIMEOUT_FACTOR = 2f;
-  private final Callback callback;
-  private final Context context;
-  private final File tablesDir;
-  private final ExecutorService ioExecutor;
-  private volatile FileState dataFileState = FileState.FILES_NOT_EXTRACTED;
-
-  private BrlttyEncoder(Context context, Callback callback) {
-    this.context = context;
-    this.callback = callback;
-    this.ioExecutor = Executors.newSingleThreadExecutor();
-    // Extract tables to device storage so we can read tables before device is unlocked after
-    // reboot.
-    if (BuildVersionUtils.isAtLeastN()) {
-      context = ContextCompat.createDeviceProtectedStorageContext(context);
-    }
-    tablesDir = context.getDir("keytables", Context.MODE_PRIVATE);
-    tablesDirPath = tablesDir.getPath();
-    ensureDataFiles();
-  }
+  public BrlttyEncoder(Context context, Callback callback) {}
 
   @Override
   public Optional<BrailleDisplayProperties> start(
-      String deviceName, int vendorId, int prodId, boolean useHid, String parameters) {
-    if (!isExtracted()) {
-      return Optional.empty();
-    }
-    long momentStart = SystemClock.elapsedRealtime();
-    DeviceInfo deviceInfo = SupportedDevicesHelper.getDeviceInfo(deviceName, useHid);
-    if (deviceInfo == null) {
-      deviceInfo = SupportedDevicesHelper.getDeviceInfoById(vendorId, prodId);
-    }
-    boolean result = initNative(context);
-    if (!result) {
-      Log.d(TAG, "init result failed");
-      return Optional.empty();
-    }
-    final String driverCode = deviceInfo.driverCode();
-    boolean success = startNative(driverCode, parameters, START_TIMEOUT_FACTOR);
-    long elapsed = SystemClock.elapsedRealtime() - momentStart;
-    Log.d(TAG, "brltty start took " + elapsed + " ms, driver: " + driverCode);
-
-    if (success) {
-      BrailleKeyBinding[] keyBindings = getFilteredKeyMap(deviceInfo.friendlyKeyNames());
-      return Optional.of(
-          new BrailleDisplayProperties(
-              driverCode,
-              getTextCellsNative(),
-              getStatusCellsNative(),
-              keyBindings,
-              getFriendlyKeyNames(keyBindings, deviceInfo.friendlyKeyNames())));
-    } else {
-      return Optional.empty();
-    }
+      String name, int vendorId, int prodId, boolean useHid, String parameters) {
+    return Optional.empty();
   }
 
   @Override
-  public void stop() {
-    if (!isExtracted()) {
-      return;
-    }
-    stopNative();
-  }
+  public void stop() {}
 
   @Override
-  public void consumePacketFromDevice(byte[] packet) {
-    if (!isExtracted()) {
-      return;
-    }
-    try {
-      addBytesFromDeviceNative(packet, packet.length);
-    } catch (IOException e) {
-      // Do nothing.
-    }
-  }
+  public void consumePacketFromDevice(byte[] packet) {}
 
   @Override
-  public void writeBrailleDots(byte[] brailleDotBytes) {
-    if (!isExtracted()) {
-      return;
-    }
-    writeWindowNative(brailleDotBytes);
-  }
+  public void writeBrailleDots(byte[] brailleDotBytes) {}
 
   @Override
   public int readCommand() {
-    if (!isExtracted()) {
-      return -1;
-    }
-    return readCommandNative();
+    return 0;
   }
 
   @Override
   public Predicate<String> getDeviceNameFilter() {
-    return deviceName ->
-        SupportedDevicesHelper.getDeviceInfo(deviceName, /* useHid= */ false) != null;
+    return s -> false;
   }
 
   @Override
   public BiPredicate<Integer, Integer> getDeviceVendorProdIdFilter() {
-    return (deviceVendorId, deviceProdId) ->
-        SupportedDevicesHelper.getDeviceInfoById(deviceVendorId, deviceProdId) != null;
-  }
-
-  @Override
-  public void ensureDataFiles() {
-    if (dataFileState != FileState.FILES_NOT_EXTRACTED) {
-      return;
-    }
-    // TODO: When the zip file is larger than a few kilobytes, detect if
-    // the data was already extracted and don't do this every time the
-    // service starts.
-    if (isRobolectric()) {
-      extractFiles();
-    } else {
-      ioExecutor.execute(this::extractFiles);
-    }
-  }
-
-  @Override
-  public boolean isExtracted() {
-    return dataFileState == FileState.FILES_EXTRACTED;
-  }
-
-  private void extractFiles() {
-    boolean loaded =
-        TranslateUtils.extractTables(context.getResources(), R.raw.keytables, tablesDir);
-    if (loaded) {
-      dataFileState = FileState.FILES_EXTRACTED;
-    } else {
-      dataFileState = FileState.FILES_ERROR;
-    }
-  }
-
-  private BrailleKeyBinding[] getFilteredKeyMap(Map<String, Integer> friendlyKeyNames) {
-    BrailleKeyBinding[] fullKeyMap = getKeyMapNative();
-    List<BrailleKeyBinding> arrayList = new ArrayList<>();
-    for (BrailleKeyBinding binding : fullKeyMap) {
-      if (hasAllFriendlyKeyNames(binding, friendlyKeyNames)) {
-        arrayList.add(binding);
-      }
-    }
-    return arrayList.toArray(new BrailleKeyBinding[0]);
-  }
-
-  private boolean hasAllFriendlyKeyNames(
-      BrailleKeyBinding binding, Map<String, Integer> friendlyKeyNames) {
-    for (String key : binding.getKeyNames()) {
-      if (!friendlyKeyNames.containsKey(key)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  private Map<String, String> getFriendlyKeyNames(
-      BrailleKeyBinding[] bindings, Map<String, Integer> friendlyKeyNames) {
-    Map<String, String> result = new HashMap<>();
-    for (BrailleKeyBinding binding : bindings) {
-      for (String key : binding.getKeyNames()) {
-        Integer resId = friendlyKeyNames.get(key);
-        if (resId != null) {
-          result.put(key, context.getString(resId));
-        } else {
-          result.put(key, key);
-        }
-      }
-    }
-    return result;
-  }
-
-  /** This field is accessed by native BrlttyWrapper. */
-  @UsedByNative("BrlttyWrapper.c")
-  private final String tablesDirPath;
-
-  /** This method is invoked by native BrlttyWrapper. */
-  @UsedByNative("BrlttyWrapper.c")
-  private boolean sendBytesToDevice(byte[] command) {
-    callback.sendPacketToDevice(command);
-    return true;
-  }
-
-  /** This method is invoked by native BrlttyWrapper. */
-  @UsedByNative("BrlttyWrapper.c")
-  @VisibleForTesting
-  public void readDelayed(long delayMillis) {
-    callback.readAfterDelay((int) delayMillis);
-  }
-
-  // Native methods
-
-  private native boolean initNative(Context context);
-
-  private native boolean startNative(String driverCode, String brailleDevice, float timeoutFactor);
-
-  private native void stopNative();
-
-  private native boolean writeWindowNative(byte[] pattern);
-
-  private native int readCommandNative();
-
-  private native void addBytesFromDeviceNative(byte[] bytes, int size) throws IOException;
-
-  private native List<BluetoothDeviceEntry> getBluetoothDriverTableNative();
-
-  private native List<UsbDeviceEntry> getUsbDriverTableNative();
-
-  private native BrailleKeyBinding[] getKeyMapNative();
-
-  private native int getTextCellsNative();
-
-  private native int getStatusCellsNative();
-
-  private static native void classInitNative();
-
-  static {
-    if (!isRobolectric()) {
-      System.loadLibrary("brlttywrap");
-      classInitNative();
-    }
+    return (integer, integer2) -> false;
   }
 }

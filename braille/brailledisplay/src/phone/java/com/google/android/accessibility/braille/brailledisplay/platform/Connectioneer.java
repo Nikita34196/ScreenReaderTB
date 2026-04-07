@@ -16,7 +16,7 @@
 
 package com.google.android.accessibility.braille.brailledisplay.platform;
 
-import java.util.stream.Collectors;
+import static com.google.common.collect.ImmutableSet.toImmutableSet;
 import static java.util.stream.Collectors.toCollection;
 
 import android.annotation.SuppressLint;
@@ -44,8 +44,7 @@ import com.google.android.accessibility.braille.brltty.BrlttyEncoder;
 import com.google.android.accessibility.braille.brltty.Encoder;
 import com.google.android.accessibility.braille.common.lib.ScreenOnOffReceiver;
 import com.google.android.accessibility.utils.SettingsUtils;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.common.collect.ImmutableSet;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -228,10 +227,10 @@ public class Connectioneer {
     }
   }
 
-  private Set<ConnectableDevice> getBondedDeviceSet() {
+  private ImmutableSet<ConnectableDevice> getBondedDeviceSet() {
     return connectManagerProxy.getBondedDevices().stream()
         .filter(device -> allowDevice(device.name()))
-        .collect(Collectors.toSet());
+        .collect(toImmutableSet());
   }
 
   private void autoConnectIfPossibleToBondedDevice(ConnectReason reason) {
@@ -717,7 +716,7 @@ public class Connectioneer {
     @Override
     public void onDeviceSeenOrUpdated(ConnectableDevice device) {
       if (allowDevice(device.name())) {
-        autoConnectIfPossible(Set.of(device), ConnectReason.AUTO_CONNECT_DEVICE_SEEN);
+        autoConnectIfPossible(ImmutableSet.of(device), ConnectReason.AUTO_CONNECT_DEVICE_SEEN);
         aspectConnection.notifyConnectableDeviceSeenOrUpdated(device);
       }
     }

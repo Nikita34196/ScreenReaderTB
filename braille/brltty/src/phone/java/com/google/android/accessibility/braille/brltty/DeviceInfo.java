@@ -17,8 +17,7 @@
 package com.google.android.accessibility.braille.brltty;
 
 import com.google.auto.value.AutoValue;
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 
 /** Information about a supported bonded bluetooth device. */
@@ -38,7 +37,7 @@ public abstract class DeviceInfo {
 
   public abstract boolean connectSecurely();
 
-  public abstract Map<String, Integer> friendlyKeyNames();
+  public abstract ImmutableMap<String, Integer> friendlyKeyNames();
 
   public static Builder builder() {
     return new AutoValue_DeviceInfo.Builder();

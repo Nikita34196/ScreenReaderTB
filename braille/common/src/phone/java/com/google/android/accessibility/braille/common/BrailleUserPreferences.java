@@ -35,11 +35,8 @@ import com.google.android.accessibility.braille.translate.TranslationResultCusto
 import com.google.android.accessibility.braille.translate.TranslatorFactory;
 import com.google.android.accessibility.braille.translate.liblouis.LibLouis;
 import com.google.android.accessibility.utils.SharedPreferencesUtils;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.primitives.Ints;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -246,13 +243,13 @@ public class BrailleUserPreferences {
         getSharedPreferences(context, BRAILLE_SHARED_PREFS_FILENAME)
             .getStringSet(
                 context.getString(R.string.pref_brailleime_translator_codes_preferred),
-                Set.of());
+                ImmutableSet.of());
     if (preferredCodesInStringSet.isEmpty()) {
-      return List.of(BrailleLanguages.getDefaultCode(context));
+      return ImmutableList.of(BrailleLanguages.getDefaultCode(context));
     }
     List<Code> preferredCodesInList = extractValidCodes(preferredCodesInStringSet);
     return preferredCodesInList.isEmpty()
-        ? List.of(BrailleLanguages.getDefaultCode(context))
+        ? ImmutableList.of(BrailleLanguages.getDefaultCode(context))
         : preferredCodesInList;
   }
 
@@ -526,7 +523,7 @@ public class BrailleUserPreferences {
       Set<String> selectedCodesInStringSet =
           new HashSet<>(
               brailleKeyboardSharedPreferences.getStringSet(
-                  selectedCodePrefKey, Set.of()));
+                  selectedCodePrefKey, ImmutableSet.of()));
       if (selectedCodesInStringSet.remove(Code.UEB.name())) {
         selectedCodesInStringSet.add(DEPRECATED_UEB_1);
         selectedCodesInStringSet.add(DEPRECATED_UEB_2);
@@ -575,7 +572,7 @@ public class BrailleUserPreferences {
       Set<String> selectedCodesInStringSet =
           new HashSet<>(
               brailleKeyboardSharedPreferences.getStringSet(
-                  selectedCodePrefKey, Set.of()));
+                  selectedCodePrefKey, ImmutableSet.of()));
       if (selectedCodesInStringSet.remove(DEPRECATED_UEB_1)) {
         hasUeb = true;
       }
@@ -614,7 +611,7 @@ public class BrailleUserPreferences {
       Set<String> selectedCodesInStringSet =
           new HashSet<>(
               brailleKeyboardSharedPreferences.getStringSet(
-                  selectedCodePrefKey, Set.of()));
+                  selectedCodePrefKey, ImmutableSet.of()));
       if (selectedCodesInStringSet.remove(DEPRECATED_SINHALA_IN)) {
         selectedCodesInStringSet.add(newCode);
       }

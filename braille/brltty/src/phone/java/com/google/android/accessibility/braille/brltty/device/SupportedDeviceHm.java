@@ -3,11 +3,8 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,10 +12,10 @@ import java.util.regex.Pattern;
 
 /** Supported device info for HIMS displays. */
 public class SupportedDeviceHm extends SupportedDevice {
-  private static final List<Pattern> NAME_REGEXES =
-      List.of(Pattern.compile("Hansone|HansoneXL|SmartBeetle"));
-  private static final Set<Pair<Integer, Integer>> VENDOR_PROD_IDS =
-      Set.of(
+  private static final ImmutableList<Pattern> NAME_REGEXES =
+      ImmutableList.of(Pattern.compile("Hansone|HansoneXL|SmartBeetle"));
+  private static final ImmutableSet<Pair<Integer, Integer>> VENDOR_PROD_IDS =
+      ImmutableSet.of(
           // HIMS [Braille Sense (USB 1.1)]
           // HIMS [Braille Sense (USB 2.0)]
           // HIMS [Braille Sense U2 (USB 2.0)]

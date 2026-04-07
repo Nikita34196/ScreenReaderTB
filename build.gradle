@@ -1,8 +1,9 @@
-// Modified TalkBack with VoiceOver gestures, Anthropic AI, MAX messenger support
+// For building the open-source release of TalkBack.
 
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+
 apply from: 'shared.gradle'
+
 apply from: 'version.gradle'
 
 final BUILD_TIMESTAMP = new Date().format('yyyy_MM_dd_HHmm')
@@ -12,13 +13,20 @@ dependencies {
 }
 
 buildscript {
-    ext.gradle_plugin_version = "8.9.1"
-    ext.kotlin_version = "1.9.24"
+    ext.gradle_plugin_version = "8.11.1"
+    ext.kotlin_version = "1.9.23"
     repositories {
         mavenCentral()
         google()
     }
     dependencies {
+        classpath "org.aspectj:aspectjtools:1.8.1"
+        // Here we set the version of the Android Gradle Plugin used by this
+        // script. It is best to use as new a version as possible, but beware
+        // that each version of the Gradle Plugin requires that the version of
+        // Gradle (used to drive the build) be a certain version or above. The
+        // correspondence is tracked here:
+        // https://developer.android.com/build/releases/gradle-plugin#updating-gradle
         classpath "com.android.tools.build:gradle:$gradle_plugin_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
@@ -32,13 +40,13 @@ allprojects {
 }
 
 android {
-    // Меняем applicationId чтобы не конфликтовал с системным TalkBack
-    namespace "com.nikita.screenreader.talkback"
+    namespace "com.android.talkback"
     defaultConfig {
-        applicationId "com.nikita.screenreader.talkback"
+        applicationId talkbackApplicationId
         versionName talkbackVersionName + "-" + BUILD_TIMESTAMP
         minSdkVersion 26
-        targetSdkVersion 36
+        targetSdkVersion 30
+        testInstrumentationRunner 'android.test.InstrumentationTestRunner'
         multiDexEnabled true
     }
     packagingOptions {
@@ -50,7 +58,12 @@ android {
         abortOnError false
     }
     productFlavors {
-        phone { dimension "target" }
-        wear  { dimension "target"; versionNameSuffix "-wear" }
+        phone {
+            dimension "target"
+        }
+        wear {
+            dimension "target"
+            versionNameSuffix "-wear"
+        }
     }
 }

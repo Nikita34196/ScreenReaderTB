@@ -19,7 +19,7 @@ package com.google.android.accessibility.braille.brailledisplay.settings;
 import static android.widget.Toast.LENGTH_LONG;
 import static com.google.android.accessibility.braille.common.BrailleUserPreferences.BRAILLE_SHARED_PREFS_FILENAME;
 import static com.google.common.base.Strings.nullToEmpty;
-import java.util.stream.Collectors;
+import static com.google.common.collect.ImmutableList.toImmutableList;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -71,9 +71,7 @@ import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.utils.BuildVersionUtils;
 import com.google.android.accessibility.utils.PreferenceSettingsUtils;
 import com.google.android.accessibility.utils.material.MaterialComponentUtils;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -502,7 +500,7 @@ import androidx.preference.PreferenceFragmentCompat;
     rowDevices.addAll(
         scannedDevices.stream()
             .map(device -> createInRangeDevice(device, /* isRemembered= */ false))
-            .collect(Collectors.toList()));
+            .collect(toImmutableList()));
 
     // Variable isStructurePreserved is true if the newly built list of DeviceInfo has the same
     // length as the list of RowDevice pulled from the existing preferences, and the elements of
@@ -510,8 +508,8 @@ import androidx.preference.PreferenceFragmentCompat;
     boolean isStructurePreserved =
         getDevicePreferenceList().stream()
             .map(pref -> pref.rowDevice.deviceAddress)
-            .collect(Collectors.toList())
-            .equals(rowDevices.stream().map(info -> info.deviceAddress).collect(Collectors.toList()));
+            .collect(toImmutableList())
+            .equals(rowDevices.stream().map(info -> info.deviceAddress).collect(toImmutableList()));
 
     return new Pair<>(rowDevices, isStructurePreserved);
   }
@@ -687,7 +685,7 @@ import androidx.preference.PreferenceFragmentCompat;
     }
   }
 
-  private List<String> getNeededAppLevelPermissions() {
+  private ImmutableList<String> getNeededAppLevelPermissions() {
     List<String> permissions = new ArrayList<>();
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
       permissions.add(Manifest.permission.BLUETOOTH_SCAN);
@@ -700,7 +698,7 @@ import androidx.preference.PreferenceFragmentCompat;
             perm ->
                 ContextCompat.checkSelfPermission(getContext(), perm)
                     == PackageManager.PERMISSION_DENIED)
-        .collect(Collectors.toList());
+        .collect(toImmutableList());
   }
 
   private void showPermissionsDialogIfNecessary() {

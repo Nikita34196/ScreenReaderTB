@@ -115,8 +115,7 @@ import com.google.android.accessibility.utils.input.CursorGranularity;
 import com.google.android.accessibility.utils.output.SpeechController;
 import com.google.android.accessibility.utils.output.SpeechController.UtteranceCompleteRunnable;
 import com.google.common.annotations.VisibleForTesting;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.common.collect.ImmutableSet;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.Objects;
@@ -192,8 +191,8 @@ public class BrailleIme extends InputMethodService {
   private static final int CALIBRATION_ANNOUNCEMENT_REPEAT_MS = 8000;
 
   // An Immutable set includes the granularities which are related to editing.
-  private static final Set<CursorGranularity> VALID_GRANULARITIES =
-      Set.of(CHARACTER, WORD, LINE, PARAGRAPH);
+  private static final ImmutableSet<CursorGranularity> VALID_GRANULARITIES =
+      ImmutableSet.of(CHARACTER, WORD, LINE, PARAGRAPH);
 
   private final AtomicInteger instructionSpeechId = new AtomicInteger();
   private State tutorialState;
@@ -1362,7 +1361,7 @@ public class BrailleIme extends InputMethodService {
                           && !BrailleCommonUtils.isVisiblePasswordField(
                               getCurrentInputEditorInfo()))
                   .setRetranslate(retranslate)
-                  ;
+                  .build();
           brailleDisplayForBrailleIme.showOnDisplay(result);
         });
   }

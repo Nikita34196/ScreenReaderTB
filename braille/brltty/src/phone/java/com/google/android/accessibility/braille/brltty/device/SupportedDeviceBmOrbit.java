@@ -3,11 +3,8 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,10 +15,10 @@ import java.util.regex.Pattern;
  * time by the Orbit Reader.
  */
 public class SupportedDeviceBmOrbit extends SupportedDevice {
-  private static final List<Pattern> NAME_REGEXES =
-      List.of(Pattern.compile("Orbit"));
-  private static final Set<Pair<Integer, Integer>> VENDOR_PROD_IDS =
-      Set.of(
+  private static final ImmutableList<Pattern> NAME_REGEXES =
+      ImmutableList.of(Pattern.compile("Orbit"));
+  private static final ImmutableSet<Pair<Integer, Integer>> VENDOR_PROD_IDS =
+      ImmutableSet.of(
           // Baum [Orbit Reader 20 (20 cells)]
           new Pair<>(0X0483, 0XA1D3),
           // Baum [Orbit Reader 40 (40 cells)]

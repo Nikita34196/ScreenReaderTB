@@ -3,11 +3,8 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,8 +12,8 @@ import java.util.regex.Pattern;
 
 /** Supported device info for Braillex Trio. */
 public class SupportedDevicePm extends SupportedDevice {
-  private static final List<Pattern> NAME_REGEXES =
-      List.of(Pattern.compile("braillex trio"));
+  private static final ImmutableList<Pattern> NAME_REGEXES =
+      ImmutableList.of(Pattern.compile("braillex trio"));
 
   @Override
   public String driverCode() {
@@ -55,7 +52,7 @@ public class SupportedDevicePm extends SupportedDevice {
 
   @Override
   public Set<Pair<Integer, Integer>> vendorProdIds() {
-    return Set.of();
+    return ImmutableSet.of();
   }
 
   @Override

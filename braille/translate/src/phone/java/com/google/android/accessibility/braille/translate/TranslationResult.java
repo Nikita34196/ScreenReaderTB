@@ -22,9 +22,7 @@ import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.braille.interfaces.BrailleWord;
 import com.google.android.apps.common.proguard.UsedByNative;
 import com.google.auto.value.AutoValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -69,12 +67,12 @@ public abstract class TranslationResult {
    * The mapping of each character of print to its position in braille. an(1-1345) is [0, 1]. a is
    * translated to 1, which is at the position 0 of all braille.
    */
-  public abstract List<Integer> textToBraillePositions();
+  public abstract ImmutableList<Integer> textToBraillePositions();
   /**
    * The mapping of each braille character to its position in print. an(1-1345) is [0, 1]. 1 is is
    * the translation of a, which is at the position 0 of "an".
    */
-  public abstract List<Integer> brailleToTextPositions();
+  public abstract ImmutableList<Integer> brailleToTextPositions();
 
   /** The text cursor position in braille. */
   public abstract int cursorBytePosition();

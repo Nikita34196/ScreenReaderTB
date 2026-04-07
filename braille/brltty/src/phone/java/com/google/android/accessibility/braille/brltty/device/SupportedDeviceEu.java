@@ -3,11 +3,8 @@ package com.google.android.accessibility.braille.brltty.device;
 import android.util.Pair;
 import com.google.android.accessibility.braille.brltty.KeyNameMapBuilder;
 import com.google.android.accessibility.braille.brltty.R;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,10 +12,10 @@ import java.util.regex.Pattern;
 
 /** Supported device info for EuroBraille. */
 public class SupportedDeviceEu extends SupportedDevice {
-  private static final List<Pattern> NAME_REGEXES =
-      List.of(Pattern.compile("Esys-"));
-  private static final Set<Pair<Integer, Integer>> VENDOR_PROD_IDS =
-      Set.of(
+  private static final ImmutableList<Pattern> NAME_REGEXES =
+      ImmutableList.of(Pattern.compile("Esys-"));
+  private static final ImmutableSet<Pair<Integer, Integer>> VENDOR_PROD_IDS =
+      ImmutableSet.of(
           // EuroBraille [Esys (version < 3.0, no SD card)]
           new Pair<>(0XC251, 0X1122),
           // EuroBraille [reserved]

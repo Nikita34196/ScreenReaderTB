@@ -42,9 +42,7 @@ import com.google.android.accessibility.brailleime.Utils;
 import com.google.android.accessibility.brailleime.input.BrailleInputPlane.CustomOnGestureListener;
 import com.google.android.accessibility.brailleime.input.BrailleInputPlane.DotTarget;
 import com.google.android.accessibility.brailleime.input.MultitouchHandler.HoldRecognizer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.List;
 import java.util.Optional;
@@ -459,7 +457,7 @@ public class BrailleInputView extends View
     // is restricted to 200dp, and is counted from the bottom edge upward.
     Rect boundingBox = new Rect();
     boundingBox.set(getLeft(), getTop(), getRight(), getBottom());
-    ViewCompat.setSystemGestureExclusionRects(this, List.of(boundingBox));
+    ViewCompat.setSystemGestureExclusionRects(this, ImmutableList.of(boundingBox));
   }
 
   /** Draws the print translation of the most recently inputted text (for low-vision users). */

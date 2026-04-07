@@ -37,14 +37,12 @@ import com.google.android.accessibility.braille.brltty.device.SupportedDevicePm;
 import com.google.android.accessibility.braille.brltty.device.SupportedDeviceSk;
 import com.google.android.accessibility.braille.brltty.device.SupportedDeviceSkDisplay;
 import com.google.android.accessibility.braille.brltty.device.SupportedDeviceVo;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 
 /** Helper class maps device name patterns to device-related data. */
 public class SupportedDevicesHelper {
-  private static final List<SupportedDevice> supportedDevices =
-      List.of(
+  private static final ImmutableList<SupportedDevice> supportedDevices =
+      ImmutableList.of(
           new SupportedDeviceVo(),
           new SupportedDeviceEu(),
           new SupportedDeviceFs(),

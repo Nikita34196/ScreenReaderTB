@@ -24,7 +24,7 @@ import static com.google.android.accessibility.brailleime.SupportedCommand.SubCa
 import static com.google.android.accessibility.brailleime.Utils.collapseNotificationPanel;
 import static com.google.android.accessibility.brailleime.Utils.highlightTalkBackSettings;
 import static com.google.android.accessibility.brailleime.settings.BrailleImeGestureActivity.CATEGORY;
-import java.util.stream.Collectors;
+import static com.google.common.collect.ImmutableList.toImmutableList;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -72,9 +72,7 @@ import com.google.android.accessibility.utils.PreferenceSettingsUtils;
 import com.google.android.accessibility.utils.preference.PreferencesActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.common.annotations.VisibleForTesting;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
@@ -142,13 +140,13 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
           preferenceCategory.setTitle(subCategory.getName(getResources()));
           getPreferenceScreen().addPreference(preferenceCategory);
         }
-        List<SupportedCommand> filteredCommands =
+        ImmutableList<SupportedCommand> filteredCommands =
             SupportedCommand.getSupportedCommands(getContext()).stream()
                 .filter(
                     (SupportedCommand supportedCommand) ->
                         supportedCommand.getCategory() == category
                             && supportedCommand.getSubCategory() == subCategory)
-                .collect(Collectors.toList());
+                .collect(toImmutableList());
         for (SupportedCommand command : filteredCommands) {
           Preference preference = new Preference(getContext());
           preference.setTitle(command.getActionDescription(getContext()));
@@ -246,7 +244,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
         assignedGesture = null;
         keyboardView.tearDown();
         removeGestureAndUpdatePreferenceSummary(gesture);
-        writeGestureAction(brailleImeAction, List.of(gesture.getId()));
+        writeGestureAction(brailleImeAction, ImmutableList.of(gesture.getId()));
         updatePreferenceSummary(brailleImeAction);
         updateMirroredGesture(gesture);
       } else {
@@ -272,7 +270,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
     }
 
     private void removeGestureAndUpdatePreferenceSummary(Gesture gesture) {
-      List<BrailleImeAction> otherActions = getOtherAction(gesture);
+      ImmutableList<BrailleImeAction> otherActions = getOtherAction(gesture);
       if (otherActions.isEmpty()) {
         return;
       }
@@ -282,8 +280,8 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
         writeGestureAction(
             oldAction,
             gestures.isEmpty()
-                ? List.of(UNASSIGNED_GESTURE.getId())
-                : gestures.stream().map(Gesture::getId).collect(Collectors.toList()));
+                ? ImmutableList.of(UNASSIGNED_GESTURE.getId())
+                : gestures.stream().map(Gesture::getId).collect(toImmutableList()));
         updatePreferenceSummary(oldAction);
       }
     }
@@ -341,7 +339,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
     private void showGestureResultHint(Gesture gesture) {
       String title = gesture.getDescription(getResources());
       String hint = getString(R.string.custom_gesture_confirm);
-      List<BrailleImeAction> otherAction = getOtherAction(gesture);
+      ImmutableList<BrailleImeAction> otherAction = getOtherAction(gesture);
       if (!otherAction.isEmpty()) {
         hint =
             getString(
@@ -374,12 +372,12 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
       }
     }
 
-    private List<BrailleImeAction> getOtherAction(Gesture gesture) {
+    private ImmutableList<BrailleImeAction> getOtherAction(Gesture gesture) {
       List<BrailleImeAction> brailleImeActionList =
           BrailleImeGestureAction.getAction(getContext(), gesture);
       return brailleImeActionList.stream()
           .filter(action -> !action.equals(brailleImeAction))
-          .collect(Collectors.toList());
+          .collect(toImmutableList());
     }
 
     private boolean closeKeyboard(Swipe swipe) {
@@ -533,7 +531,7 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
 
           @Override
           public void onRemove() {
-            writeGestureAction(brailleImeAction, List.of(UNASSIGNED_GESTURE.getId()));
+            writeGestureAction(brailleImeAction, ImmutableList.of(UNASSIGNED_GESTURE.getId()));
             updatePreferenceSummary(brailleImeAction);
             showSnackBar(R.string.braille_keyboard_snackbar_remove, Snackbar.LENGTH_LONG);
           }
@@ -585,14 +583,14 @@ public class BrailleImeGestureCommandActivity extends PreferencesActivity {
         new ButtonClickListener() {
           @Override
           public void onMirrored(Gesture gesture) {
-            List<BrailleImeAction> action = getOtherAction(gesture.mirrorDots());
+            ImmutableList<BrailleImeAction> action = getOtherAction(gesture.mirrorDots());
             if (!action.isEmpty()) {
               // Mirrored is being used.
-              writeGestureAction(action.get(0), List.of(UNASSIGNED_GESTURE.getId()));
+              writeGestureAction(action.get(0), ImmutableList.of(UNASSIGNED_GESTURE.getId()));
               updatePreferenceSummary(action.get(0));
             }
             writeGestureAction(
-                brailleImeAction, List.of(gesture.getId(), gesture.mirrorDots().getId()));
+                brailleImeAction, ImmutableList.of(gesture.getId(), gesture.mirrorDots().getId()));
             updatePreferenceSummary(brailleImeAction);
             showSnackBar(
                 R.string.braille_keyboard_snackbar_change_mirrored_gesture, Snackbar.LENGTH_LONG);

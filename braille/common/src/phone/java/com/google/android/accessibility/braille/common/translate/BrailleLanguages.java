@@ -16,7 +16,7 @@
 
 package com.google.android.accessibility.braille.common.translate;
 
-import java.util.stream.Collectors;
+import static com.google.common.collect.ImmutableList.toImmutableList;
 
 import android.content.Context;
 import androidx.annotation.StringRes;
@@ -139,7 +139,7 @@ public class BrailleLanguages {
     List<Code> localeLanguageCodes =
         BrailleLanguages.getAvailableCodes(context).stream()
             .filter(code -> code.getLocale().getLanguage().equals(systemLocale.getLanguage()))
-            .collect(Collectors.toList());
+            .collect(toImmutableList());
     Optional<Code> firstLocaleCountryCode =
         localeLanguageCodes.stream()
             .filter(code -> code.getLocale().getCountry().equals(systemLocale.getCountry()))

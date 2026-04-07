@@ -33,9 +33,7 @@ import com.google.android.accessibility.braille.common.TalkBackSpeaker;
 import com.google.android.accessibility.braille.interfaces.ScreenReaderActionPerformer.ScreenReaderAction;
 import com.google.android.accessibility.utils.AccessibilityNodeInfoUtils.SpellingSuggestion;
 import com.google.android.accessibility.utils.FocusFinder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 
 /** Class handles all the typo correction functionalities in Braille keyboard. */
@@ -86,7 +84,7 @@ public class TypoHandler {
     String indexString;
     try {
       suggestion = typoFinder.nextSuggestion();
-      List<String> suggestionList = typoFinder.getSuggestionCandidates();
+      ImmutableList<String> suggestionList = typoFinder.getSuggestionCandidates();
       indexString =
           context.getString(
               R.string.index_of_spelling_suggestion,
@@ -110,7 +108,7 @@ public class TypoHandler {
     String indexString;
     try {
       suggestion = typoFinder.previousSuggestion();
-      List<String> suggestionList = typoFinder.getSuggestionCandidates();
+      ImmutableList<String> suggestionList = typoFinder.getSuggestionCandidates();
       indexString =
           context.getString(
               R.string.index_of_spelling_suggestion,

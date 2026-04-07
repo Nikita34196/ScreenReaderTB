@@ -27,8 +27,7 @@ import com.google.android.accessibility.braille.translate.TableLoader;
 import com.google.android.accessibility.braille.translate.liblouis.TranslateUtils;
 import com.google.android.accessibility.utils.BuildVersionUtils;
 import com.google.android.apps.common.proguard.UsedByNative;
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -188,7 +187,7 @@ public class BrlttyEncoder implements Encoder, TableLoader {
     }
   }
 
-  private BrailleKeyBinding[] getFilteredKeyMap(Map<String, Integer> friendlyKeyNames) {
+  private BrailleKeyBinding[] getFilteredKeyMap(ImmutableMap<String, Integer> friendlyKeyNames) {
     BrailleKeyBinding[] fullKeyMap = getKeyMapNative();
     List<BrailleKeyBinding> arrayList = new ArrayList<>();
     for (BrailleKeyBinding binding : fullKeyMap) {
@@ -200,7 +199,7 @@ public class BrlttyEncoder implements Encoder, TableLoader {
   }
 
   private boolean hasAllFriendlyKeyNames(
-      BrailleKeyBinding binding, Map<String, Integer> friendlyKeyNames) {
+      BrailleKeyBinding binding, ImmutableMap<String, Integer> friendlyKeyNames) {
     for (String key : binding.getKeyNames()) {
       if (!friendlyKeyNames.containsKey(key)) {
         return false;
@@ -210,7 +209,7 @@ public class BrlttyEncoder implements Encoder, TableLoader {
   }
 
   private Map<String, String> getFriendlyKeyNames(
-      BrailleKeyBinding[] bindings, Map<String, Integer> friendlyKeyNames) {
+      BrailleKeyBinding[] bindings, ImmutableMap<String, Integer> friendlyKeyNames) {
     Map<String, String> result = new HashMap<>();
     for (BrailleKeyBinding binding : bindings) {
       for (String key : binding.getKeyNames()) {

@@ -16,7 +16,7 @@
 
 package com.google.android.accessibility.brailleime.input;
 
-import java.util.stream.Collectors;
+import static com.google.common.collect.ImmutableList.toImmutableList;
 
 import android.annotation.SuppressLint;
 import android.content.res.Resources;
@@ -31,9 +31,7 @@ import androidx.annotation.VisibleForTesting;
 import com.google.android.accessibility.brailleime.BrailleImeLog;
 import com.google.android.accessibility.brailleime.Utils;
 import com.google.android.accessibility.brailleime.input.Swipe.Direction;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.HashMap;
 import java.util.List;
@@ -179,10 +177,10 @@ class MultitouchHandler {
   }
 
   /** Gets a copy of the currently active touch points. */
-  List<PointF> getActivePoints() {
+  ImmutableList<PointF> getActivePoints() {
     return activePointers.values().stream()
         .map(pointerWithHistory -> pointerWithHistory.pointCurrent)
-        .collect(Collectors.toList());
+        .collect(toImmutableList());
   }
 
   private final Runnable tapOrSwipeRunnable =
@@ -266,7 +264,7 @@ class MultitouchHandler {
         @Override
         public void run() {
           BrailleImeLog.d(TAG, "hold and swipe is running.");
-          List<PointF> heldPoints = getHeldPoints();
+          ImmutableList<PointF> heldPoints = getHeldPoints();
           if (!heldPoints.isEmpty()) {
             if (heldPoints.size() == getActivePoints().size()) {
               Optional<Swipe> swipe =
@@ -433,30 +431,30 @@ class MultitouchHandler {
     isProcessed = false;
   }
 
-  private List<PointF> getRecentlyInactivatedCurrentPoints(long eventTime) {
+  private ImmutableList<PointF> getRecentlyInactivatedCurrentPoints(long eventTime) {
     Range<Long> recentRange = new Range<>(eventTime - RECENCY_MAX_MS, eventTime);
     return inactivePointers.values().stream()
         .filter(
             pointerWithHistory ->
                 isAccumulationMode || recentRange.contains(pointerWithHistory.momentMadeInactive))
         .map(pointerWithHistory -> pointerWithHistory.pointCurrent)
-        .collect(Collectors.toList());
+        .collect(toImmutableList());
   }
 
-  private List<PointF> getRecentlyInactivatedInitialPoints(long eventTime) {
+  private ImmutableList<PointF> getRecentlyInactivatedInitialPoints(long eventTime) {
     Range<Long> recentRange = new Range<>(eventTime - RECENCY_MAX_MS, eventTime);
     return inactivePointers.values().stream()
         .filter(pointerWithHistory -> recentRange.contains(pointerWithHistory.momentMadeInactive))
         .map(pointerWithHistory -> pointerWithHistory.pointInitial)
-        .collect(Collectors.toList());
+        .collect(toImmutableList());
   }
 
-  private List<PointerWithHistory> getRecentlyInactivatedPointsHistory(long eventTime) {
+  private ImmutableList<PointerWithHistory> getRecentlyInactivatedPointsHistory(long eventTime) {
     long now = eventTime;
     Range<Long> recentRange = new Range<>(now - RECENCY_MAX_MS, now);
     return inactivePointers.values().stream()
         .filter(pointerWithHistory -> recentRange.contains(pointerWithHistory.momentMadeInactive))
-        .collect(Collectors.toList());
+        .collect(toImmutableList());
   }
 
   private Optional<PointerWithHistory> getLastRecentlyInactivatedPointsHistory(long eventTime) {
@@ -466,11 +464,11 @@ class MultitouchHandler {
         .findFirst();
   }
 
-  private List<PointF> getHeldPoints() {
+  private ImmutableList<PointF> getHeldPoints() {
     return activePointers.values().stream()
         .filter(pointerWithHistory -> pointerWithHistory.isHoldInProgress)
         .map(pointerWithHistory -> pointerWithHistory.pointCurrent)
-        .collect(Collectors.toList());
+        .collect(toImmutableList());
   }
 
   private void transferPointerToInactive(int pointerId, long eventTime) {

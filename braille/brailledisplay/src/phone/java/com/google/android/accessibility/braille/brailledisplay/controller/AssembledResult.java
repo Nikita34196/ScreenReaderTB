@@ -32,9 +32,7 @@ import com.google.android.accessibility.braille.translate.BrailleTranslator;
 import com.google.android.accessibility.braille.translate.TranslationResult;
 import com.google.auto.value.AutoValue;
 import com.google.common.base.Strings;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -104,7 +102,7 @@ abstract class AssembledResult {
   /** The index of the selected text in the byte array. */
   abstract SelectionRange textByteSelection();
   /** The range of clickable index of text in the text field in the byte array. */
-  abstract List<Range<Integer>> textFieldTextClickableByteRange();
+  abstract ImmutableList<Range<Integer>> textFieldTextClickableByteRange();
   /** The range of clickable index of holdings in the byte array. */
   abstract Range<Integer> holdingsClickableByteRange();
   /** The range of clickable index of action in the byte array. */
@@ -130,8 +128,8 @@ abstract class AssembledResult {
     private final int holdingsPosition;
     private final BrailleWord holdingsWord;
     private final BrailleWord textFieldWord;
-    private final List<Integer> textFieldTextToBraillePositions;
-    private final List<Integer> textFieldTextBrailleToTextPositions;
+    private final ImmutableList<Integer> textFieldTextToBraillePositions;
+    private final ImmutableList<Integer> textFieldTextBrailleToTextPositions;
     private final boolean textMasked;
     private Range<Integer> holdingsClickableByteRange;
     private Range<Integer> actionClickableByteRange;
@@ -294,7 +292,7 @@ abstract class AssembledResult {
               .build();
       return new AutoValue_AssembledResult(
           new SelectionRange(lowerByteIndex, upperByteIndex),
-          new ArrayList<>(textFieldTextClickableByteRange),
+          ImmutableList.copyOf(textFieldTextClickableByteRange),
           holdingsClickableByteRange,
           actionClickableByteRange,
           allTranslationResult);
