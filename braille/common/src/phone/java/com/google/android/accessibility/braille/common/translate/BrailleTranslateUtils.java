@@ -22,8 +22,7 @@ import android.content.res.Resources;
 import android.text.TextUtils;
 import com.google.android.accessibility.braille.common.R;
 import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.google.common.collect.ImmutableList;
 import java.util.List;
 
 /** Utils for translation of Braille. */
@@ -53,7 +52,7 @@ public class BrailleTranslateUtils {
   public static String getDotsDescription(Resources resources, BrailleCharacter brailleCharacter) {
     String dotsString =
         changeToSentence(
-            resources, new ArrayList<>(Arrays.asList(brailleCharacter.toLocaleString().split(""))));
+            resources, ImmutableList.copyOf(brailleCharacter.toLocaleString().split("")));
     return resources.getQuantityString(
         R.plurals.braille_dots, brailleCharacter.getOnCount(), dotsString);
   }

@@ -59,13 +59,9 @@ import com.google.android.accessibility.brailleime.input.Gesture;
 import com.google.android.accessibility.brailleime.input.Swipe;
 import com.google.android.accessibility.brailleime.input.Swipe.Direction;
 import com.google.android.accessibility.brailleime.input.UnassignedGesture;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.HashSet;
-import java.util.Set;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -79,8 +75,8 @@ public final class BrailleImeGestureAction {
   private static final int MAX_SWIPE_TOUCH_POINT = 3;
   // We assume users are right-handed by default, meaning they would hold the dots with their left
   // fingers and swipe with their right.
-  private static final Map<BrailleImeAction, Gesture> DEFAULT_ACTION_GESTURE =
-      Map.<BrailleImeAction, Gesture>builder()
+  private static final ImmutableMap<BrailleImeAction, Gesture> DEFAULT_ACTION_GESTURE =
+      ImmutableMap.<BrailleImeAction, Gesture>builder()
           .put(MOVE_CURSOR_BACKWARD, new Swipe(Direction.UP, /* touchCount= */ 1))
           .put(MOVE_CURSOR_FORWARD, new Swipe(Direction.DOWN, /* touchCount= */ 1))
           .put(ADD_SPACE_OR_NEXT_ITEM, new Swipe(Direction.RIGHT, /* touchCount= */ 1))
@@ -173,13 +169,13 @@ public final class BrailleImeGestureAction {
               END_OF_PAGE,
               new DotHoldSwipe(
                   new Swipe(Direction.DOWN, /* touchCount= */ 1), new BrailleCharacter(4, 5)))
-          ;
+          .buildOrThrow();
 
-  private static final Map<BrailleImeAction, List<Gesture>>
+  private static final ImmutableMap<BrailleImeAction, ImmutableList<Gesture>>
       DEFAULT_ACTION_GESTURE_MIRRORED = createMapWithMirroredDots();
 
-  private static final Set<BrailleCharacter> VALID_HOLD =
-      Set.of(
+  private static final ImmutableSet<BrailleCharacter> VALID_HOLD =
+      ImmutableSet.of(
           new BrailleCharacter(1),
           new BrailleCharacter(2),
           new BrailleCharacter(3),
@@ -200,7 +196,7 @@ public final class BrailleImeGestureAction {
    * UnassignedGesture}.
    */
   public static List<Gesture> getDefaultGesture(BrailleImeAction action) {
-    for (Entry<BrailleImeAction, List<Gesture>> entry :
+    for (Entry<BrailleImeAction, ImmutableList<Gesture>> entry :
         DEFAULT_ACTION_GESTURE_MIRRORED.entrySet()) {
       if (entry.getKey().equals(action)) {
         return new ArrayList<>(entry.getValue());
@@ -212,7 +208,7 @@ public final class BrailleImeGestureAction {
   /** Returns the list of default actions of the given gesture. */
   public static List<BrailleImeAction> getDefaultAction(Gesture gesture) {
     List<BrailleImeAction> brailleImeActionList = new ArrayList<>();
-    for (Entry<BrailleImeAction, List<Gesture>> entry :
+    for (Entry<BrailleImeAction, ImmutableList<Gesture>> entry :
         DEFAULT_ACTION_GESTURE_MIRRORED.entrySet()) {
       if (entry.getValue().contains(gesture)) {
         brailleImeActionList.add(entry.getKey());
@@ -241,16 +237,16 @@ public final class BrailleImeGestureAction {
    * Returns the gesture of the given action. If no match exists, return {@link UnassignedGesture}.
    */
   public static List<Gesture> getGesture(Context context, BrailleImeAction action) {
-    Map<BrailleImeAction, List<Gesture>> map = getActionGestureMap(context);
+    ImmutableMap<BrailleImeAction, ImmutableList<Gesture>> map = getActionGestureMap(context);
     if (map.containsKey(action)) {
       return new ArrayList<>(map.get(action));
     }
     return Arrays.asList(new UnassignedGesture());
   }
 
-  private static List<Gesture> getGesture(
+  private static ImmutableList<Gesture> getGesture(
       Map<BrailleImeAction, List<String>> actioGesturenMap, BrailleImeAction action) {
-    List.Builder<Gesture> gesturesBuilder = List.builder();
+    ImmutableList.Builder<Gesture> gesturesBuilder = ImmutableList.builder();
     for (String gestureId : actioGesturenMap.get(action)) {
       Gesture gesture = getGestureById(gestureId);
       if (gesture != null) {
@@ -262,9 +258,9 @@ public final class BrailleImeGestureAction {
 
   /** Returns the gesture of the given action or null if no match exists. */
   public static List<BrailleImeAction> getAction(Context context, Gesture gesture) {
-    Map<BrailleImeAction, List<Gesture>> map = getActionGestureMap(context);
+    ImmutableMap<BrailleImeAction, ImmutableList<Gesture>> map = getActionGestureMap(context);
     List<BrailleImeAction> brailleImeActionList = new ArrayList<>();
-    for (Entry<BrailleImeAction, List<Gesture>> entry : map.entrySet()) {
+    for (Entry<BrailleImeAction, ImmutableList<Gesture>> entry : map.entrySet()) {
       if (entry.getValue().contains(gesture)) {
         brailleImeActionList.add(entry.getKey());
       }
@@ -283,16 +279,16 @@ public final class BrailleImeGestureAction {
   }
 
   /** Returns the action gesture map. */
-  private static Map<BrailleImeAction, List<Gesture>> getActionGestureMap(
+  private static ImmutableMap<BrailleImeAction, ImmutableList<Gesture>> getActionGestureMap(
       Context context) {
     if (!FeatureFlagReader.useGestureCustomization(context)) {
       return DEFAULT_ACTION_GESTURE_MIRRORED;
     }
     Map<BrailleImeAction, List<String>> customizedActioGesturenMap =
         BrailleUserPreferences.readGestureActionMap(context);
-    Map<BrailleImeAction, List<Gesture>> currentlyUsingActionGestureMap = new HashMap<>();
+    Map<BrailleImeAction, ImmutableList<Gesture>> currentlyUsingActionGestureMap = new HashMap<>();
     for (BrailleImeAction defaultAction : DEFAULT_ACTION_GESTURE_MIRRORED.keySet()) {
-      List<Gesture> list;
+      ImmutableList<Gesture> list;
       if (customizedActioGesturenMap.containsKey(defaultAction)) {
         list = getGesture(customizedActioGesturenMap, defaultAction);
       } else if (customizedActioGesturenMap.containsKey(defaultAction.getRootAction())) {
@@ -302,7 +298,7 @@ public final class BrailleImeGestureAction {
       }
       currentlyUsingActionGestureMap.put(defaultAction, list);
     }
-    return new HashMap<>(currentlyUsingActionGestureMap);
+    return ImmutableMap.copyOf(currentlyUsingActionGestureMap);
   }
 
   @Nullable
@@ -329,25 +325,25 @@ public final class BrailleImeGestureAction {
     return gesture;
   }
 
-  private static Map<BrailleImeAction, List<Gesture>>
+  private static ImmutableMap<BrailleImeAction, ImmutableList<Gesture>>
       createMapWithMirroredDots() {
-    Map.Builder<BrailleImeAction, List<Gesture>> builder = new HashMap<>();
+    ImmutableMap.Builder<BrailleImeAction, ImmutableList<Gesture>> builder = ImmutableMap.builder();
     for (BrailleImeAction action : BrailleImeAction.values()) {
-      List<Gesture> gestures;
+      ImmutableList<Gesture> gestures;
       if (DEFAULT_ACTION_GESTURE.containsKey(action)) {
         gestures = getDefaultGestures(action);
       } else if (!action.equals(action.getRootAction())) {
         gestures = getDefaultGestures(action.getRootAction());
       } else {
-        gestures = List.of(new UnassignedGesture());
+        gestures = ImmutableList.of(new UnassignedGesture());
       }
       builder.put(action, gestures);
     }
-    return builder;
+    return builder.buildOrThrow();
   }
 
-  private static List<Gesture> getDefaultGestures(BrailleImeAction action) {
-    List.Builder<Gesture> gesturesBuilder = List.builder();
+  private static ImmutableList<Gesture> getDefaultGestures(BrailleImeAction action) {
+    ImmutableList.Builder<Gesture> gesturesBuilder = ImmutableList.builder();
     Gesture defaultGesture = DEFAULT_ACTION_GESTURE.get(action);
     gesturesBuilder.add(defaultGesture);
     if (!defaultGesture.equals(defaultGesture.mirrorDots())) {

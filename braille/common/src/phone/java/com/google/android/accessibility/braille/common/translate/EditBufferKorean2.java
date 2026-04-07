@@ -68,8 +68,7 @@ import com.google.android.accessibility.braille.interfaces.BrailleCharacter;
 import com.google.android.accessibility.braille.interfaces.BrailleWord;
 import com.google.android.accessibility.braille.translate.BrailleTranslator;
 import com.google.android.accessibility.braille.translate.TranslationResult;
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
 import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.Map;
@@ -79,84 +78,84 @@ import java.util.Objects;
 public class EditBufferKorean2 extends EditBufferContracted {
   private static final HashMap<String, String> previousResultMap = new HashMap<>();
   private static final String TAG = "EditBufferKorean2";
-  private static final Map<String, String> ABBREVIATION_VOWELS = new HashMap<>();
-  static {
-      ABBREVIATION_VOWELS.put("1456", "ᅥᆨ");
-      ABBREVIATION_VOWELS.put("23456", "ᅥᆫ");
-      ABBREVIATION_VOWELS.put("2345", "ᅥᆯ");
-      ABBREVIATION_VOWELS.put("16", "ᅧᆫ");
-      ABBREVIATION_VOWELS.put("1256", "ᅧᆯ");
-      ABBREVIATION_VOWELS.put("12456", "ᅧᆼ");
-      ABBREVIATION_VOWELS.put("1346", "ᅩᆨ");
-      ABBREVIATION_VOWELS.put("12356", "ᅩᆫ");
-      ABBREVIATION_VOWELS.put("123456", "ᅩᆼ");
-      ABBREVIATION_VOWELS.put("1245", "ᅮᆫ");
-      ABBREVIATION_VOWELS.put("12346", "ᅮᆯ");
-      ABBREVIATION_VOWELS.put("1356", "ᅳᆫ");
-      ABBREVIATION_VOWELS.put("2346", "ᅳᆯ");
-      ABBREVIATION_VOWELS.put("12345", "ᅵᆫ");
-  }
-  private static final Map<String, String> COMBINE_FINAL_MAP = new HashMap<>();
-  static {
-      COMBINE_FINAL_MAP.put("ᆨᆨ", "ᆩ");
-      COMBINE_FINAL_MAP.put("ᆨᆺ", "ᆪ");
-      COMBINE_FINAL_MAP.put("ᆫᆽ", "ᆬ");
-      COMBINE_FINAL_MAP.put("ᆫᇂ", "ᆭ");
-      COMBINE_FINAL_MAP.put("ᆯᆨ", "ᆰ");
-      COMBINE_FINAL_MAP.put("ᆯᆷ", "ᆱ");
-      COMBINE_FINAL_MAP.put("ᆯᆸ", "ᆲ");
-      COMBINE_FINAL_MAP.put("ᆯᆺ", "ᆳ");
-      COMBINE_FINAL_MAP.put("ᆯᇀ", "ᆴ");
-      COMBINE_FINAL_MAP.put("ᆯᇁ", "ᆵ");
-      COMBINE_FINAL_MAP.put("ᆯᇂ", "ᆶ");
-  }
-  private static final Map<String, String> SPECIAL_ABBREVIATION_VOWELS = new HashMap<>();
-  static {
-      SPECIAL_ABBREVIATION_VOWELS.put("1456", "억");
-      SPECIAL_ABBREVIATION_VOWELS.put("23456", "언");
-      SPECIAL_ABBREVIATION_VOWELS.put("2345", "얼");
-      SPECIAL_ABBREVIATION_VOWELS.put("16", "연");
-      SPECIAL_ABBREVIATION_VOWELS.put("1256", "열");
-      SPECIAL_ABBREVIATION_VOWELS.put("12456", "영");
-      SPECIAL_ABBREVIATION_VOWELS.put("1346", "옥");
-      SPECIAL_ABBREVIATION_VOWELS.put("12356", "온");
-      SPECIAL_ABBREVIATION_VOWELS.put("123456", "옹");
-      SPECIAL_ABBREVIATION_VOWELS.put("1245", "운");
-      SPECIAL_ABBREVIATION_VOWELS.put("12346", "울");
-      SPECIAL_ABBREVIATION_VOWELS.put("1356", "은");
-      SPECIAL_ABBREVIATION_VOWELS.put("2346", "을");
-      SPECIAL_ABBREVIATION_VOWELS.put("12345", "인");
-  }
-  private static final Map<String, String> SPECIAL_ABBREVIATION_CHARS = new HashMap<>();
-  static {
-      SPECIAL_ABBREVIATION_CHARS.put("1246", "가");
-      SPECIAL_ABBREVIATION_CHARS.put("123", "사");
-      SPECIAL_ABBREVIATION_CHARS.put("6-1246", "까");
-      SPECIAL_ABBREVIATION_CHARS.put("6-123", "싸");
-  }
-  private static final Map<String, String> ABBREVIATION_CHARACTERS = new HashMap<>();
-  static {
-      ABBREVIATION_CHARACTERS.put("14", "나");
-      ABBREVIATION_CHARACTERS.put("24", "다");
-      ABBREVIATION_CHARACTERS.put("15", "마");
-      ABBREVIATION_CHARACTERS.put("45", "바");
-      ABBREVIATION_CHARACTERS.put("46", "자");
-      ABBREVIATION_CHARACTERS.put("124", "카");
-      ABBREVIATION_CHARACTERS.put("125", "타");
-      ABBREVIATION_CHARACTERS.put("145", "파");
-      ABBREVIATION_CHARACTERS.put("245", "하");
-  }
-  private static final Map<String, String> ABBREVIATION_WORD = new HashMap<>();
-  static {
-      ABBREVIATION_WORD.put("456-234", "것");
-      ABBREVIATION_WORD.put("1-234", "그래서");
-      ABBREVIATION_WORD.put("1-14", "그러나");
-      ABBREVIATION_WORD.put("1-25", "그러면");
-      ABBREVIATION_WORD.put("1-26", "그러므로");
-      ABBREVIATION_WORD.put("1-1345", "그런데");
-      ABBREVIATION_WORD.put("1-136", "그리고");
-      ABBREVIATION_WORD.put("1-156", "그리하여");
-  }
+  private static final ImmutableMap<String, String> ABBREVIATION_VOWELS =
+      ImmutableMap.<String, String>builder()
+          .put("1456", "ᅥᆨ")
+          .put("23456", "ᅥᆫ")
+          .put("2345", "ᅥᆯ")
+          .put("16", "ᅧᆫ")
+          .put("1256", "ᅧᆯ")
+          .put("12456", "ᅧᆼ")
+          .put("1346", "ᅩᆨ")
+          .put("12356", "ᅩᆫ")
+          .put("123456", "ᅩᆼ")
+          .put("1245", "ᅮᆫ")
+          .put("12346", "ᅮᆯ")
+          .put("1356", "ᅳᆫ")
+          .put("2346", "ᅳᆯ")
+          .put("12345", "ᅵᆫ")
+          .buildOrThrow();
+  private static final ImmutableMap<String, String> COMBINE_FINAL_MAP =
+      ImmutableMap.<String, String>builder()
+          .put("ᆨᆨ", "ᆩ")
+          .put("ᆨᆺ", "ᆪ")
+          .put("ᆫᆽ", "ᆬ")
+          .put("ᆫᇂ", "ᆭ")
+          .put("ᆯᆨ", "ᆰ")
+          .put("ᆯᆷ", "ᆱ")
+          .put("ᆯᆸ", "ᆲ")
+          .put("ᆯᆺ", "ᆳ")
+          .put("ᆯᇀ", "ᆴ")
+          .put("ᆯᇁ", "ᆵ")
+          .put("ᆯᇂ", "ᆶ")
+          .buildOrThrow();
+  private static final ImmutableMap<String, String> SPECIAL_ABBREVIATION_VOWELS =
+      ImmutableMap.<String, String>builder()
+          .put("1456", "억")
+          .put("23456", "언")
+          .put("2345", "얼")
+          .put("16", "연")
+          .put("1256", "열")
+          .put("12456", "영")
+          .put("1346", "옥")
+          .put("12356", "온")
+          .put("123456", "옹")
+          .put("1245", "운")
+          .put("12346", "울")
+          .put("1356", "은")
+          .put("2346", "을")
+          .put("12345", "인")
+          .buildOrThrow();
+  private static final ImmutableMap<String, String> SPECIAL_ABBREVIATION_CHARS =
+      ImmutableMap.<String, String>builder()
+          .put("1246", "가")
+          .put("123", "사")
+          .put("6-1246", "까")
+          .put("6-123", "싸")
+          .buildOrThrow();
+  private static final ImmutableMap<String, String> ABBREVIATION_CHARACTERS =
+      ImmutableMap.<String, String>builder()
+          .put("14", "나")
+          .put("24", "다")
+          .put("15", "마")
+          .put("45", "바")
+          .put("46", "자")
+          .put("124", "카")
+          .put("125", "타")
+          .put("145", "파")
+          .put("245", "하")
+          .buildOrThrow();
+  private static final ImmutableMap<String, String> ABBREVIATION_WORD =
+      ImmutableMap.<String, String>builder()
+          .put("456-234", "것")
+          .put("1-234", "그래서")
+          .put("1-14", "그러나")
+          .put("1-25", "그러면")
+          .put("1-26", "그러므로")
+          .put("1-1345", "그런데")
+          .put("1-136", "그리고")
+          .put("1-156", "그리하여")
+          .buildOrThrow();
   private final KoreanContractedExceptionalCase exceptionalCase =
       new KoreanContractedExceptionalCase();
   private final Context koreanContext;
